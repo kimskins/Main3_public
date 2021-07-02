@@ -12,7 +12,7 @@ using SourceGrid;
 namespace Dukyou3
 {
     public partial class Form_103 : Form
-    {
+    {//gittest2
         SourceGrid.Cells.Controllers.CustomEvents clickEvent = new SourceGrid.Cells.Controllers.CustomEvents();
         private DataTable a_dt = new DataTable();  //C_amodel 자료 테이블
         private DataTable b_dt = new DataTable();  //C_bmodel 자료 테이블
