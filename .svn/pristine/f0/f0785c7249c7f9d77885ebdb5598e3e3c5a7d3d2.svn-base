@@ -1,0 +1,82 @@
+﻿namespace Dukyou3
+{
+    partial class Form_501c
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_501c));
+            this.grid1 = new SourceGrid.Grid();
+            this.bConfirm = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // grid1
+            // 
+            this.grid1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.grid1.EnableSort = true;
+            this.grid1.Location = new System.Drawing.Point(10, 45);
+            this.grid1.Name = "grid1";
+            this.grid1.OptimizeMode = SourceGrid.CellOptimizeMode.ForRows;
+            this.grid1.SelectionMode = SourceGrid.GridSelectionMode.Cell;
+            this.grid1.Size = new System.Drawing.Size(644, 248);
+            this.grid1.TabIndex = 10;
+            this.grid1.TabStop = true;
+            this.grid1.ToolTipText = "";
+            this.grid1.DoubleClick += new System.EventHandler(this.grid1_DoubleClick);
+            this.grid1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.grid1_MouseClick);
+            this.grid1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.grid1_MouseDoubleClick);
+            // 
+            // bConfirm
+            // 
+            this.bConfirm.Location = new System.Drawing.Point(10, 16);
+            this.bConfirm.Name = "bConfirm";
+            this.bConfirm.Size = new System.Drawing.Size(75, 25);
+            this.bConfirm.TabIndex = 11;
+            this.bConfirm.Text = "확인";
+            this.bConfirm.UseVisualStyleBackColor = true;
+            this.bConfirm.Click += new System.EventHandler(this.bConfirm_Click);
+            // 
+            // Form_501c
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(668, 305);
+            this.Controls.Add(this.bConfirm);
+            this.Controls.Add(this.grid1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "Form_501c";
+            this.Text = "사이즈그룹";
+            this.Load += new System.EventHandler(this.Form_502c_Load);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private SourceGrid.Grid grid1;
+        private System.Windows.Forms.Button bConfirm;
+    }
+}

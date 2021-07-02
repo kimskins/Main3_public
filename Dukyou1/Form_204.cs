@@ -1,0 +1,1850 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+
+namespace Dukyou3
+{
+    public partial class Form_204 : Form
+    {
+        int Sno;
+        public string xcc="";           // row_id를 저장할 변수
+        public string normal_code = ""; // 실제 code를 저장할 변수
+        public bool act_id;             //수정가능한 모드 구분=true
+        public Form_204(int sno)
+        {
+            if (sno == 99)
+            {
+                Sno = 0;
+                act_id = true;  //수정가능
+                Config.tem_b = act_id;
+            }
+            else
+            {
+                Sno = sno;
+                act_id = false; //수정불가
+                Config.tem_b = act_id;
+
+            }
+            InitializeComponent();
+        }
+
+        private void Form44_Load(object sender, EventArgs e)
+        {
+            if (act_id == true) //수정
+            {
+                Screen srn = Screen.PrimaryScreen;
+                int Xb = this.Width;  //좌,우
+                this.Location = new Point((srn.Bounds.Width - Xb) / 2, 1);  //좌/우,위/아래
+                button3.Visible = false;
+            }
+            else
+            {
+                button1.Visible = false;
+                button2.Visible = false;
+            }
+            select();
+        }
+
+       private void select()
+       {
+           grid1.Rows.Clear();
+           CellClickEvent clickController = new CellClickEvent();
+           ValueChangedEvent valueChangedController = new ValueChangedEvent();
+           // 
+           SourceGrid.Cells.Views.Cell L_cell = new SourceGrid.Cells.Views.Cell();  //좌측 셀
+           L_cell.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleLeft;
+           //
+           SourceGrid.Cells.Views.Cell C_cell = new SourceGrid.Cells.Views.Cell();  //중앙 셀
+           C_cell.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter;
+           //
+           SourceGrid.Cells.Views.Cell C_cellr = new SourceGrid.Cells.Views.Cell();  //중앙 셀
+           C_cellr.ForeColor = Color.FromArgb(255, 0, 0);
+           C_cellr.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter;
+           //
+           SourceGrid.Cells.Views.Cell R_cell = new SourceGrid.Cells.Views.Cell(); //오른쪽셀
+           R_cell.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleRight;
+           //
+           SourceGrid.Cells.Editors.TextBox disable_cell = new SourceGrid.Cells.Editors.TextBox(typeof(string));  //수정불가
+           disable_cell.EnableEdit = false;
+           //
+           grid1.BorderStyle = BorderStyle.FixedSingle;
+           grid1.ColumnsCount = 106;
+           grid1.FixedRows = 2;
+           grid1.Rows.Insert(0);
+           grid1.Rows.Insert(1);
+           grid1.Rows[0].Height = 26;
+           grid1.Rows[1].Height = 22;
+           //
+           DataTable field = new DataTable();
+           var DBConn = new MySqlConnection(Config.DB_con1);
+           DBConn.Open();
+           string cQuery = "select col_name,title_name FROM C_dtable_m where no<>0 order by no";
+           MySqlDataAdapter returnVal = new MySqlDataAdapter(cQuery, DBConn);
+           returnVal.Fill(field);
+           returnVal.Dispose();
+           //
+           DataRow[] dr;
+           grid1[0, 0] = new MyHeader1("row_id");
+           grid1[0, 0].RowSpan = 2;
+           grid1.Columns[0].Visible = false;
+           //
+           grid1[0, 1] = new MyHeader1("√");
+           grid1[0, 1].RowSpan = 2;
+           grid1[0, 2] = new MyHeader1("Code");
+           grid1[0, 2].RowSpan = 2;
+           grid1[0, 3] = new MyHeader1("mark");
+           grid1[0, 3].RowSpan = 2;
+           grid1[0, 4] = new MyHeader1("Me");
+           grid1[0, 4].RowSpan = 2;
+           grid1[0, 5] = new MyHeader1("참고사항 표시항목");
+           grid1[0, 5].RowSpan = 2;
+            //
+           grid1[0, 6]  = new EditableColumnHeader(field.Rows[0][1].ToString());
+           grid1[0, 7]  = new EditableColumnHeader(field.Rows[1][1].ToString());
+           grid1[0, 8]  = new EditableColumnHeader(field.Rows[2][1].ToString());
+           grid1[0, 9]  = new EditableColumnHeader(field.Rows[3][1].ToString());
+           grid1[0, 10]  = new EditableColumnHeader(field.Rows[4][1].ToString());
+           grid1[0, 11] = new EditableColumnHeader(field.Rows[5][1].ToString());
+           grid1[0, 12] = new EditableColumnHeader(field.Rows[6][1].ToString());
+           grid1[0, 13] = new EditableColumnHeader(field.Rows[7][1].ToString());
+           grid1[0, 14] = new EditableColumnHeader(field.Rows[8][1].ToString());
+           grid1[0, 15] = new EditableColumnHeader(field.Rows[9][1].ToString());
+           grid1[0, 16] = new EditableColumnHeader(field.Rows[10][1].ToString());
+           grid1[0, 17] = new EditableColumnHeader(field.Rows[11][1].ToString());
+           grid1[0, 18] = new EditableColumnHeader(field.Rows[12][1].ToString());
+           grid1[0, 19] = new EditableColumnHeader(field.Rows[13][1].ToString());
+           grid1[0, 20] = new EditableColumnHeader(field.Rows[14][1].ToString());
+           grid1[0, 21] = new EditableColumnHeader(field.Rows[15][1].ToString());
+           grid1[0, 22] = new EditableColumnHeader(field.Rows[16][1].ToString());
+           grid1[0, 23] = new EditableColumnHeader(field.Rows[17][1].ToString());
+           grid1[0, 24] = new EditableColumnHeader(field.Rows[18][1].ToString());
+           grid1[0, 25] = new EditableColumnHeader(field.Rows[19][1].ToString());
+           grid1[0, 26] = new EditableColumnHeader(field.Rows[20][1].ToString());
+           grid1[0, 27] = new EditableColumnHeader(field.Rows[21][1].ToString());
+           grid1[0, 28] = new EditableColumnHeader(field.Rows[22][1].ToString());
+           grid1[0, 29] = new EditableColumnHeader(field.Rows[23][1].ToString());
+           grid1[0, 30] = new EditableColumnHeader(field.Rows[24][1].ToString());
+           grid1[0, 31] = new EditableColumnHeader(field.Rows[25][1].ToString());
+           grid1[0, 32] = new EditableColumnHeader(field.Rows[26][1].ToString());
+           grid1[0, 33] = new EditableColumnHeader(field.Rows[27][1].ToString());
+           grid1[0, 34] = new EditableColumnHeader(field.Rows[28][1].ToString());
+           grid1[0, 35] = new EditableColumnHeader(field.Rows[29][1].ToString());
+           grid1[0, 36] = new EditableColumnHeader(field.Rows[30][1].ToString());
+           grid1[0, 37] = new EditableColumnHeader(field.Rows[31][1].ToString());
+           grid1[0, 38] = new EditableColumnHeader(field.Rows[32][1].ToString());
+           grid1[0, 39] = new EditableColumnHeader(field.Rows[33][1].ToString());
+           grid1[0, 40] = new EditableColumnHeader(field.Rows[34][1].ToString());
+           grid1[0, 41] = new EditableColumnHeader(field.Rows[35][1].ToString());
+           grid1[0, 42] = new EditableColumnHeader(field.Rows[36][1].ToString());
+           grid1[0, 43] = new EditableColumnHeader(field.Rows[37][1].ToString());
+           grid1[0, 44] = new EditableColumnHeader(field.Rows[38][1].ToString());
+           grid1[0, 45] = new EditableColumnHeader(field.Rows[39][1].ToString());
+           grid1[0, 46] = new EditableColumnHeader(field.Rows[40][1].ToString());
+           grid1[0, 47] = new EditableColumnHeader(field.Rows[41][1].ToString());
+           grid1[0, 48] = new EditableColumnHeader(field.Rows[42][1].ToString());
+           grid1[0, 49] = new EditableColumnHeader(field.Rows[43][1].ToString());
+           grid1[0, 50] = new EditableColumnHeader(field.Rows[44][1].ToString());
+           grid1[0, 51] = new EditableColumnHeader(field.Rows[45][1].ToString());
+           grid1[0, 52] = new EditableColumnHeader(field.Rows[46][1].ToString());
+           grid1[0, 53] = new EditableColumnHeader(field.Rows[47][1].ToString());
+           grid1[0, 54] = new EditableColumnHeader(field.Rows[48][1].ToString());
+           grid1[0, 55] = new EditableColumnHeader(field.Rows[49][1].ToString());
+           grid1[0, 56] = new EditableColumnHeader(field.Rows[50][1].ToString());
+           grid1[0, 57] = new EditableColumnHeader(field.Rows[51][1].ToString());
+           grid1[0, 58] = new EditableColumnHeader(field.Rows[52][1].ToString());
+           grid1[0, 59] = new EditableColumnHeader(field.Rows[53][1].ToString());
+           grid1[0, 60] = new EditableColumnHeader(field.Rows[54][1].ToString());
+           grid1[0, 61] = new EditableColumnHeader(field.Rows[55][1].ToString());
+           grid1[0, 62] = new EditableColumnHeader(field.Rows[56][1].ToString());
+           grid1[0, 63] = new EditableColumnHeader(field.Rows[57][1].ToString());
+           grid1[0, 64] = new EditableColumnHeader(field.Rows[58][1].ToString());
+           //새로추가
+           grid1[0, 65] = new EditableColumnHeader(field.Rows[59][1].ToString());
+           grid1[0, 66] = new EditableColumnHeader(field.Rows[60][1].ToString());
+           grid1[0, 67] = new EditableColumnHeader(field.Rows[61][1].ToString());
+           grid1[0, 68] = new EditableColumnHeader(field.Rows[62][1].ToString());
+           grid1[0, 69] = new EditableColumnHeader(field.Rows[63][1].ToString());
+           grid1[0, 70] = new EditableColumnHeader(field.Rows[64][1].ToString());
+           grid1[0, 71] = new EditableColumnHeader(field.Rows[65][1].ToString());
+           grid1[0, 72] = new EditableColumnHeader(field.Rows[66][1].ToString());
+           grid1[0, 73] = new EditableColumnHeader(field.Rows[67][1].ToString());
+           grid1[0, 74] = new EditableColumnHeader(field.Rows[68][1].ToString());
+           grid1[0, 75] = new EditableColumnHeader(field.Rows[69][1].ToString());
+           grid1[0, 76] = new EditableColumnHeader(field.Rows[70][1].ToString());
+           grid1[0, 77] = new EditableColumnHeader(field.Rows[71][1].ToString());
+           grid1[0, 78] = new EditableColumnHeader(field.Rows[72][1].ToString());
+           grid1[0, 79] = new EditableColumnHeader(field.Rows[73][1].ToString());
+           grid1[0, 80] = new EditableColumnHeader(field.Rows[74][1].ToString());
+           grid1[0, 81] = new EditableColumnHeader(field.Rows[75][1].ToString());
+           grid1[0, 82] = new EditableColumnHeader(field.Rows[76][1].ToString());
+           grid1[0, 83] = new EditableColumnHeader(field.Rows[77][1].ToString());
+           grid1[0, 84] = new EditableColumnHeader(field.Rows[78][1].ToString());
+            //추가
+            grid1[0, 85] = new EditableColumnHeader(field.Rows[79][1].ToString());
+            grid1[0, 86] = new EditableColumnHeader(field.Rows[80][1].ToString());
+            grid1[0, 87] = new EditableColumnHeader(field.Rows[81][1].ToString());
+            grid1[0, 88] = new EditableColumnHeader(field.Rows[82][1].ToString());
+            grid1[0, 89] = new EditableColumnHeader(field.Rows[83][1].ToString());
+            grid1[0, 90] = new EditableColumnHeader(field.Rows[84][1].ToString());
+            grid1[0, 91] = new EditableColumnHeader(field.Rows[85][1].ToString());
+            grid1[0, 92] = new EditableColumnHeader(field.Rows[86][1].ToString());
+            grid1[0, 93] = new EditableColumnHeader(field.Rows[87][1].ToString());
+            grid1[0, 94] = new EditableColumnHeader(field.Rows[88][1].ToString());
+            grid1[0, 95] = new EditableColumnHeader(field.Rows[89][1].ToString());
+            grid1[0, 96] = new EditableColumnHeader(field.Rows[90][1].ToString());
+            grid1[0, 97] = new EditableColumnHeader(field.Rows[91][1].ToString());
+            grid1[0, 98] = new EditableColumnHeader(field.Rows[92][1].ToString());
+            grid1[0, 99] = new EditableColumnHeader(field.Rows[93][1].ToString());
+            grid1[0, 100] = new EditableColumnHeader(field.Rows[94][1].ToString());
+            grid1[0, 101] = new EditableColumnHeader(field.Rows[95][1].ToString());
+            grid1[0, 102] = new EditableColumnHeader(field.Rows[96][1].ToString());
+            grid1[0, 103] = new EditableColumnHeader(field.Rows[97][1].ToString());
+
+            //
+            grid1[0, 104] = new MyHeader("");
+           grid1[0, 104].RowSpan = 2;
+           grid1.Columns[104].Visible = false;
+           grid1[0, 105] = new MyHeader("");
+           grid1[0, 105].RowSpan = 2;
+           grid1.Columns[105].Visible = false;
+           //
+           grid1[1, 6]  = new MyHeader1(field.Rows[0][0].ToString());
+           grid1[1, 7]  = new MyHeader1(field.Rows[1][0].ToString());
+           grid1[1, 8]  = new MyHeader1(field.Rows[2][0].ToString());
+           grid1[1, 9]  = new MyHeader1(field.Rows[3][0].ToString());
+           grid1[1, 10]  = new MyHeader1(field.Rows[4][0].ToString());
+           grid1[1, 11] = new MyHeader1(field.Rows[5][0].ToString());
+           grid1[1, 12] = new MyHeader1(field.Rows[6][0].ToString());
+           grid1[1, 13] = new MyHeader1(field.Rows[7][0].ToString());
+           grid1[1, 14] = new MyHeader1(field.Rows[8][0].ToString());
+           grid1[1, 15] = new MyHeader1(field.Rows[9][0].ToString());
+           grid1[1, 16] = new MyHeader1(field.Rows[10][0].ToString());
+           grid1[1, 17] = new MyHeader1(field.Rows[11][0].ToString());
+           grid1[1, 18] = new MyHeader1(field.Rows[12][0].ToString());
+           grid1[1, 19] = new MyHeader1(field.Rows[13][0].ToString());
+           grid1[1, 20] = new MyHeader1(field.Rows[14][0].ToString());
+           grid1[1, 21] = new MyHeader1(field.Rows[15][0].ToString());
+           grid1[1, 22] = new MyHeader1(field.Rows[16][0].ToString());
+           grid1[1, 23] = new MyHeader1(field.Rows[17][0].ToString());
+           grid1[1, 24] = new MyHeader1(field.Rows[18][0].ToString());
+           grid1[1, 25] = new MyHeader1(field.Rows[19][0].ToString());
+           grid1[1, 26] = new MyHeader1(field.Rows[20][0].ToString());
+           grid1[1, 27] = new MyHeader1(field.Rows[21][0].ToString());
+           grid1[1, 28] = new MyHeader1(field.Rows[22][0].ToString());
+           grid1[1, 29] = new MyHeader1(field.Rows[23][0].ToString());
+           grid1[1, 30] = new MyHeader1(field.Rows[24][0].ToString());
+           grid1[1, 31] = new MyHeader1(field.Rows[25][0].ToString());
+           grid1[1, 32] = new MyHeader1(field.Rows[26][0].ToString());
+           grid1[1, 33] = new MyHeader1(field.Rows[27][0].ToString());
+           grid1[1, 34] = new MyHeader1(field.Rows[28][0].ToString());
+           grid1[1, 35] = new MyHeader1(field.Rows[29][0].ToString());
+           grid1[1, 36] = new MyHeader1(field.Rows[30][0].ToString());
+           grid1[1, 37] = new MyHeader1(field.Rows[31][0].ToString());
+           grid1[1, 38] = new MyHeader1(field.Rows[32][0].ToString());
+           grid1[1, 39] = new MyHeader1(field.Rows[33][0].ToString());
+           grid1[1, 40] = new MyHeader1(field.Rows[34][0].ToString());
+           grid1[1, 41] = new MyHeader1(field.Rows[35][0].ToString());
+           grid1[1, 42] = new MyHeader1(field.Rows[36][0].ToString());
+           grid1[1, 43] = new MyHeader1(field.Rows[37][0].ToString());
+           grid1[1, 44] = new MyHeader1(field.Rows[38][0].ToString());
+           grid1[1, 45] = new MyHeader1(field.Rows[39][0].ToString());
+           grid1[1, 46] = new MyHeader1(field.Rows[40][0].ToString());
+           grid1[1, 47] = new MyHeader1(field.Rows[41][0].ToString());
+           grid1[1, 48] = new MyHeader1(field.Rows[42][0].ToString());
+           grid1[1, 49] = new MyHeader1(field.Rows[43][0].ToString());
+           grid1[1, 50] = new MyHeader1(field.Rows[44][0].ToString());
+           grid1[1, 51] = new MyHeader1(field.Rows[45][0].ToString());
+           grid1[1, 52] = new MyHeader1(field.Rows[46][0].ToString());
+           grid1[1, 53] = new MyHeader1(field.Rows[47][0].ToString());
+           grid1[1, 54] = new MyHeader1(field.Rows[48][0].ToString());
+           grid1[1, 55] = new MyHeader1(field.Rows[49][0].ToString());
+           grid1[1, 56] = new MyHeader1(field.Rows[50][0].ToString());
+           grid1[1, 57] = new MyHeader1(field.Rows[51][0].ToString());
+           grid1[1, 58] = new MyHeader1(field.Rows[52][0].ToString());
+           grid1[1, 59] = new MyHeader1(field.Rows[53][0].ToString());
+           grid1[1, 60] = new MyHeader1(field.Rows[54][0].ToString());
+           grid1[1, 61] = new MyHeader1(field.Rows[55][0].ToString());
+           grid1[1, 62] = new MyHeader1(field.Rows[56][0].ToString());
+           grid1[1, 63] = new MyHeader1(field.Rows[57][0].ToString());
+           grid1[1, 64] = new MyHeader1(field.Rows[58][0].ToString());
+           //새로추가
+           grid1[1, 65] = new MyHeader1(field.Rows[59][0].ToString());
+           grid1[1, 66] = new MyHeader1(field.Rows[60][0].ToString());
+           grid1[1, 67] = new MyHeader1(field.Rows[61][0].ToString());
+           grid1[1, 68] = new MyHeader1(field.Rows[62][0].ToString());
+           grid1[1, 69] = new MyHeader1(field.Rows[63][0].ToString());
+           grid1[1, 70] = new MyHeader1(field.Rows[64][0].ToString());
+           grid1[1, 71] = new MyHeader1(field.Rows[65][0].ToString());
+           grid1[1, 72] = new MyHeader1(field.Rows[66][0].ToString());
+           grid1[1, 73] = new MyHeader1(field.Rows[67][0].ToString());
+           grid1[1, 74] = new MyHeader1(field.Rows[68][0].ToString());
+           grid1[1, 75] = new MyHeader1(field.Rows[69][0].ToString());
+           grid1[1, 76] = new MyHeader1(field.Rows[70][0].ToString());
+           grid1[1, 77] = new MyHeader1(field.Rows[71][0].ToString());
+           grid1[1, 78] = new MyHeader1(field.Rows[72][0].ToString());
+           grid1[1, 79] = new MyHeader1(field.Rows[73][0].ToString());
+           grid1[1, 80] = new MyHeader1(field.Rows[74][0].ToString());
+           grid1[1, 81] = new MyHeader1(field.Rows[75][0].ToString());
+           grid1[1, 82] = new MyHeader1(field.Rows[76][0].ToString());
+           grid1[1, 83] = new MyHeader1(field.Rows[77][0].ToString());
+           grid1[1, 84] = new MyHeader1(field.Rows[78][0].ToString());
+            //추가
+            grid1[1, 85] = new MyHeader1(field.Rows[79][0].ToString());
+            grid1[1, 86] = new MyHeader1(field.Rows[80][0].ToString());
+            grid1[1, 87] = new MyHeader1(field.Rows[81][0].ToString());
+            grid1[1, 88] = new MyHeader1(field.Rows[82][0].ToString());
+            grid1[1, 89] = new MyHeader1(field.Rows[83][0].ToString());
+            grid1[1, 90] = new MyHeader1(field.Rows[84][0].ToString());
+            grid1[1, 91] = new MyHeader1(field.Rows[85][0].ToString());
+            grid1[1, 92] = new MyHeader1(field.Rows[86][0].ToString());
+            grid1[1, 93] = new MyHeader1(field.Rows[87][0].ToString());
+            grid1[1, 94] = new MyHeader1(field.Rows[88][0].ToString());
+            grid1[1, 95] = new MyHeader1(field.Rows[89][0].ToString());
+            grid1[1, 96] = new MyHeader1(field.Rows[90][0].ToString());
+            grid1[1, 97] = new MyHeader1(field.Rows[91][0].ToString());
+            grid1[1, 98] = new MyHeader1(field.Rows[92][0].ToString());
+            grid1[1, 99] = new MyHeader1(field.Rows[93][0].ToString());
+            grid1[1, 100] = new MyHeader1(field.Rows[94][0].ToString());
+            grid1[1, 101] = new MyHeader1(field.Rows[95][0].ToString());
+            grid1[1, 102] = new MyHeader1(field.Rows[96][0].ToString());
+            grid1[1, 103] = new MyHeader1(field.Rows[97][0].ToString());
+
+            //
+            cQuery = " select * FROM C_dtable";
+           cQuery += " order by code_id";
+           var cmd = new MySqlCommand(cQuery, DBConn);
+           var myRead = cmd.ExecuteReader();
+           //
+           int m = 2;
+           while (myRead.Read())
+           {
+               grid1.Rows.Insert(m);
+               grid1.Rows[m].Height = 26;
+               //
+               grid1[m, 0] = new SourceGrid.Cells.Cell(myRead["row_id"], typeof(string));
+                   
+               grid1[m, 1] = new SourceGrid.Cells.CheckBox(null, false);
+               grid1[m, 1].AddController(clickController);
+
+               grid1[m, 2] = new SourceGrid.Cells.Cell(myRead["code_id"], typeof(int));
+               grid1[m, 2].View = C_cell;
+               grid1[m, 2].AddController(valueChangedController);
+
+               grid1[m, 3] = new SourceGrid.Cells.Cell(myRead["remark"], typeof(string));
+               grid1[m, 3].View = L_cell;
+               grid1[m, 3].AddController(valueChangedController);
+
+               grid1[m, 4] = new SourceGrid.Cells.Button("");
+               grid1[m, 4].AddController(clickController);
+
+               grid1[m, 5] = new SourceGrid.Cells.Cell(myRead["memo3"], typeof(string));
+               grid1[m, 5].View = L_cell;
+               grid1[m, 5].AddController(valueChangedController);
+
+                grid1[m, 6] = new SourceGrid.Cells.Cell(myRead["page"], typeof(string));
+               if (grid1[m, 6].Value == null)
+                   grid1[m, 6].View = C_cell;
+               else if(grid1[m, 6].Value.ToString() == "0")
+                   grid1[m, 6].View = C_cell;
+               else
+                   grid1[m, 6].View = C_cellr;
+               grid1[m, 6].AddController(valueChangedController);
+
+               grid1[m, 7] = new SourceGrid.Cells.Cell(myRead["jung_R"], typeof(string));
+               if (grid1[m, 7].Value == null)
+                   grid1[m, 7].View = C_cell;
+               else if (grid1[m, 7].Value.ToString() == "0")
+                   grid1[m, 7].View = C_cell;
+               else
+                   grid1[m, 7].View = C_cellr;
+               grid1[m, 7].AddController(valueChangedController);
+
+               grid1[m, 8] = new SourceGrid.Cells.Cell(myRead["busu"], typeof(string));
+               if (grid1[m, 8].Value == null)
+                   grid1[m, 8].View = C_cell;
+               else if (grid1[m, 8].Value.ToString() == "0")
+                   grid1[m, 8].View = C_cell;
+               else
+                   grid1[m, 8].View = C_cellr;
+               grid1[m, 8].AddController(valueChangedController);
+
+               grid1[m, 9] = new SourceGrid.Cells.Cell(myRead["gokji"], typeof(string));
+               if (grid1[m, 9].Value == null)
+                   grid1[m, 9].View = C_cell;
+               else if (grid1[m, 9].Value.ToString() == "0")
+                   grid1[m, 9].View = C_cell;
+               else
+                   grid1[m, 9].View = C_cellr;
+               grid1[m, 9].AddController(valueChangedController);
+
+               grid1[m, 10] = new SourceGrid.Cells.Cell(myRead["book_jul_a"], typeof(string));
+               if (grid1[m, 10].Value == null)
+                   grid1[m, 10].View = C_cell;
+               else if (grid1[m, 10].Value.ToString() == "0")
+                   grid1[m, 10].View = C_cell;
+               else
+                   grid1[m, 10].View = C_cellr;
+               grid1[m, 10].AddController(valueChangedController);
+
+               grid1[m, 11] = new SourceGrid.Cells.Cell(myRead["book_jul_b"], typeof(string));
+               if (grid1[m, 11].Value == null)
+                   grid1[m, 11].View = C_cell;
+               else if (grid1[m, 11].Value.ToString() == "0")
+                   grid1[m, 11].View = C_cell;
+               else
+                   grid1[m, 11].View = C_cellr;
+               grid1[m, 11].AddController(valueChangedController);
+
+               grid1[m,12] = new SourceGrid.Cells.Cell(myRead["print_jul_a"], typeof(string));
+               if (grid1[m, 12].Value == null)
+                   grid1[m, 12].View = C_cell;
+               else if (grid1[m, 12].Value.ToString() == "0")
+                   grid1[m, 12].View = C_cell;
+               else
+                   grid1[m, 12].View = C_cellr;
+               grid1[m, 12].AddController(valueChangedController);
+
+               grid1[m, 13] = new SourceGrid.Cells.Cell(myRead["print_jul_b"], typeof(string));
+               if (grid1[m, 13].Value == null)
+                   grid1[m, 13].View = C_cell;
+               else if (grid1[m, 13].Value.ToString() == "0")
+                   grid1[m, 13].View = C_cell;
+               else
+                   grid1[m, 13].View = C_cellr;
+               grid1[m,13].AddController(valueChangedController);
+
+               grid1[m, 14] = new SourceGrid.Cells.Cell(myRead["paper_weight"], typeof(string));
+               if (grid1[m, 14].Value == null)
+                   grid1[m, 14].View = C_cell;
+               else if (grid1[m, 14].Value.ToString() == "0")
+                   grid1[m, 14].View = C_cell;
+               else
+                   grid1[m, 14].View = C_cellr;
+               grid1[m, 14].AddController(valueChangedController);
+
+               grid1[m, 15] = new SourceGrid.Cells.Cell(myRead["don_hon"], typeof(string));
+               if (grid1[m, 15].Value == null)
+                   grid1[m, 15].View = C_cell;
+               else if (grid1[m, 15].Value.ToString() == "0")
+                   grid1[m, 15].View = C_cell;
+               else
+                   grid1[m, 15].View = C_cellr;
+               grid1[m, 15].AddController(valueChangedController);
+
+               grid1[m, 16] = new SourceGrid.Cells.Cell(myRead["nalgae"], typeof(string));
+               if (grid1[m, 16].Value == null)
+                   grid1[m, 16].View = C_cell;
+               else if (grid1[m, 16].Value.ToString() == "0")
+                   grid1[m, 16].View = C_cell;
+               else
+                   grid1[m, 16].View = C_cellr;
+               grid1[m, 16].AddController(valueChangedController);
+
+               grid1[m, 17] = new SourceGrid.Cells.Cell(myRead["count"], typeof(string));
+               if (grid1[m, 17].Value == null)
+                   grid1[m, 17].View = C_cell;
+               else if (grid1[m, 17].Value.ToString() == "0")
+                   grid1[m, 17].View = C_cell;
+               else
+                   grid1[m, 17].View = C_cellr;
+               grid1[m, 17].AddController(valueChangedController);
+
+               grid1[m, 18] = new SourceGrid.Cells.Cell(myRead["sebari"], typeof(string));
+               if (grid1[m, 18].Value == null)
+                   grid1[m, 18].View = C_cell;
+               else if (grid1[m, 18].Value.ToString() == "0")
+                   grid1[m, 18].View = C_cell;
+               else
+                   grid1[m, 18].View = C_cellr;
+               grid1[m, 18].AddController(valueChangedController);
+
+               grid1[m, 19] = new SourceGrid.Cells.Cell(myRead["miso"], typeof(string));
+               if (grid1[m, 19].Value == null)
+                   grid1[m, 19].View = C_cell;
+               else if (grid1[m, 19].Value.ToString() == "0")
+                   grid1[m, 19].View = C_cell;
+               else
+                   grid1[m, 19].View = C_cellr;
+               grid1[m, 19].AddController(valueChangedController);
+
+               grid1[m, 20] = new SourceGrid.Cells.Cell(myRead["habji"], typeof(string));
+               if (grid1[m, 20].Value == null)
+                   grid1[m, 20].View = C_cell;
+               else if (grid1[m, 20].Value.ToString() == "0")
+                   grid1[m, 20].View = C_cell;
+               else
+                   grid1[m, 20].View = C_cellr;
+               grid1[m, 20].AddController(valueChangedController);
+
+               grid1[m, 21] = new SourceGrid.Cells.Cell(myRead["jubji"], typeof(string));
+               if (grid1[m, 21].Value == null)
+                   grid1[m, 21].View = C_cell;
+               else if (grid1[m, 21].Value.ToString() == "0")
+                   grid1[m, 21].View = C_cell;
+               else
+                   grid1[m, 21].View = C_cellr;
+               grid1[m, 21].AddController(valueChangedController);
+
+               grid1[m,22] = new SourceGrid.Cells.Cell(myRead["size_a"], typeof(string));
+               if (grid1[m, 22].Value == null)
+                   grid1[m, 22].View = C_cell;
+               else if (grid1[m, 22].Value.ToString() == "0")
+                   grid1[m, 22].View = C_cell;
+               else
+                   grid1[m, 22].View = C_cellr;
+               grid1[m,22].AddController(valueChangedController);
+
+               grid1[m,23] = new SourceGrid.Cells.Cell(myRead["size_b"], typeof(string));
+               if (grid1[m, 23].Value == null)
+                   grid1[m, 23].View = C_cell;
+               else if (grid1[m, 23].Value.ToString() == "0")
+                   grid1[m, 23].View = C_cell;
+               else
+                   grid1[m, 23].View = C_cellr;
+               grid1[m,23].AddController(valueChangedController);
+
+               grid1[m,24] = new SourceGrid.Cells.Cell(myRead["bond_side"], typeof(string));
+               if (grid1[m, 24].Value == null)
+                   grid1[m, 24].View = C_cell;
+               else if (grid1[m, 24].Value.ToString() == "0")
+                   grid1[m, 24].View = C_cell;
+               else
+                   grid1[m, 24].View = C_cellr;
+               grid1[m,24].AddController(valueChangedController);
+
+               grid1[m,25] = new SourceGrid.Cells.Cell(myRead["croth"], typeof(string));
+               if (grid1[m, 25].Value == null)
+                   grid1[m, 25].View = C_cell;
+               else if (grid1[m, 25].Value.ToString() == "0")
+                   grid1[m, 25].View = C_cell;
+               else
+                   grid1[m, 25].View = C_cellr;
+               grid1[m,25].AddController(valueChangedController);
+
+               grid1[m,26] = new SourceGrid.Cells.Cell(myRead["pok"], typeof(string));
+               if (grid1[m, 26].Value == null)
+                   grid1[m, 26].View = C_cell;
+               else if (grid1[m, 26].Value.ToString() == "0")
+                   grid1[m, 26].View = C_cell;
+               else
+                   grid1[m, 26].View = C_cellr;
+               grid1[m,26].AddController(valueChangedController);
+
+               grid1[m,27] = new SourceGrid.Cells.Cell(myRead["gili"], typeof(string));
+               if (grid1[m, 27].Value == null)
+                   grid1[m, 27].View = C_cell;
+               else if (grid1[m, 27].Value.ToString() == "0")
+                   grid1[m, 27].View = C_cell;
+               else
+                   grid1[m, 27].View = C_cellr;
+               grid1[m,27].AddController(valueChangedController);
+
+               grid1[m,28] = new SourceGrid.Cells.Cell(myRead["jungmae"], typeof(string));
+               if (grid1[m, 28].Value == null)
+                   grid1[m, 28].View = C_cell;
+               else if (grid1[m, 28].Value.ToString() == "0")
+                   grid1[m, 28].View = C_cell;
+               else
+                   grid1[m, 28].View = C_cellr;
+               grid1[m,28].AddController(valueChangedController);
+
+               grid1[m,29] = new SourceGrid.Cells.Cell(myRead["doc_sz_a"], typeof(string));
+               if (grid1[m, 29].Value == null)
+                   grid1[m, 29].View = C_cell;
+               else if (grid1[m, 29].Value.ToString() == "0")
+                   grid1[m, 29].View = C_cell;
+               else
+                   grid1[m, 29].View = C_cellr;
+               grid1[m,29].AddController(valueChangedController);
+
+               grid1[m, 30] = new SourceGrid.Cells.Cell(myRead["doc_sz_b"], typeof(string));
+               if (grid1[m, 30].Value == null)
+                   grid1[m, 30].View = C_cell;
+               else if (grid1[m, 30].Value.ToString() == "0")
+                   grid1[m, 30].View = C_cell;
+               else
+                   grid1[m, 30].View = C_cellr;
+               grid1[m,30].AddController(valueChangedController);
+
+               grid1[m,31] = new SourceGrid.Cells.Cell(myRead["daesu"], typeof(string));
+               if (grid1[m, 31].Value == null)
+                   grid1[m, 31].View = C_cell;
+               else if (grid1[m, 31].Value.ToString() == "0")
+                   grid1[m, 31].View = C_cell;
+               else
+                   grid1[m, 31].View = C_cellr;
+               grid1[m,31].AddController(valueChangedController);
+
+               grid1[m, 32] = new SourceGrid.Cells.Cell(myRead["cover_sz_a"], typeof(string));
+               if (grid1[m, 32].Value == null)
+                   grid1[m, 32].View = C_cell;
+               else if (grid1[m, 32].Value.ToString() == "0")
+                   grid1[m, 32].View = C_cell;
+               else
+                   grid1[m, 32].View = C_cellr;
+               grid1[m, 32].AddController(valueChangedController);
+
+               grid1[m, 33] = new SourceGrid.Cells.Cell(myRead["cover_sz_b"], typeof(string));
+               if (grid1[m, 33].Value == null)
+                   grid1[m, 33].View = C_cell;
+               else if (grid1[m, 33].Value.ToString() == "0")
+                   grid1[m, 33].View = C_cell;
+               else
+                   grid1[m, 33].View = C_cellr;
+               grid1[m, 33].AddController(valueChangedController);
+
+               grid1[m, 34] = new SourceGrid.Cells.Cell(myRead["item"], typeof(string));
+               if (grid1[m, 34].Value == null)
+                   grid1[m, 34].View = C_cell;
+               else if (grid1[m, 34].Value.ToString() == "0")
+                   grid1[m, 34].View = C_cell;
+               else
+                   grid1[m, 34].View = C_cellr;
+               grid1[m, 34].AddController(valueChangedController);
+
+               grid1[m, 35] = new SourceGrid.Cells.Cell(myRead["jang"], typeof(string));
+               if (grid1[m, 35].Value == null)
+                   grid1[m, 35].View = C_cell;
+               else if (grid1[m, 35].Value.ToString() == "0")
+                   grid1[m, 35].View = C_cell;
+               else
+                   grid1[m, 35].View = C_cellr;
+               grid1[m, 35].AddController(valueChangedController);
+
+               grid1[m, 36] = new SourceGrid.Cells.Cell(myRead["go"], typeof(string));
+               if (grid1[m, 36].Value == null)
+                   grid1[m, 36].View = C_cell;
+               else if (grid1[m, 36].Value.ToString() == "0")
+                   grid1[m, 36].View = C_cell;
+               else
+                   grid1[m, 36].View = C_cellr;
+               grid1[m, 36].AddController(valueChangedController);
+
+               grid1[m, 37] = new SourceGrid.Cells.Cell(myRead["print_kind"], typeof(string));
+               if (grid1[m, 37].Value == null)
+                   grid1[m, 37].View = C_cell;
+               else if (grid1[m, 37].Value.ToString() == "0")
+                   grid1[m, 37].View = C_cell;
+               else
+                   grid1[m, 37].View = C_cellr;
+               grid1[m, 37].AddController(valueChangedController);
+
+               grid1[m, 38] = new SourceGrid.Cells.Cell(myRead["paper_kind"], typeof(string));
+               if (grid1[m, 38].Value == null)
+                   grid1[m, 38].View = C_cell;
+               else if (grid1[m, 38].Value.ToString() == "0")
+                   grid1[m, 38].View = C_cell;
+               else
+                   grid1[m, 38].View = C_cellr;
+               grid1[m, 38].AddController(valueChangedController);
+
+               grid1[m, 39] = new SourceGrid.Cells.Cell(myRead["book_thick"], typeof(string));
+               if (grid1[m, 39].Value == null)
+                   grid1[m, 39].View = C_cell;
+               else if (grid1[m, 39].Value.ToString() == "0")
+                   grid1[m, 39].View = C_cell;
+               else
+                   grid1[m, 39].View = C_cellr;
+               grid1[m, 39].AddController(valueChangedController);
+
+               grid1[m, 40] = new SourceGrid.Cells.Cell(myRead["s_code1"], typeof(string));
+               if (grid1[m, 40].Value == null)
+                   grid1[m, 40].View = C_cell;
+               else if (grid1[m, 40].Value.ToString() == "0")
+                   grid1[m, 40].View = C_cell;
+               else
+                   grid1[m, 40].View = C_cellr;
+               grid1[m, 40].AddController(valueChangedController);
+
+               grid1[m, 41] = new SourceGrid.Cells.Cell(myRead["s_code2"], typeof(string));
+               if (grid1[m, 41].Value == null)
+                   grid1[m, 41].View = C_cell;
+               else if (grid1[m, 41].Value.ToString() == "0")
+                   grid1[m, 41].View = C_cell;
+               else
+                   grid1[m, 41].View = C_cellr;
+               grid1[m, 41].AddController(valueChangedController);
+
+               grid1[m, 42] = new SourceGrid.Cells.Cell(myRead["s_code3"], typeof(string));
+               if (grid1[m, 42].Value == null)
+                   grid1[m, 42].View = C_cell;
+               else if (grid1[m, 42].Value.ToString() == "0")
+                   grid1[m, 42].View = C_cell;
+               else
+                   grid1[m, 42].View = C_cellr;
+               grid1[m, 42].AddController(valueChangedController);
+
+               grid1[m, 43] = new SourceGrid.Cells.Cell(myRead["s_code4"], typeof(string));
+               if (grid1[m, 43].Value == null)
+                   grid1[m, 43].View = C_cell;
+               else if (grid1[m, 43].Value.ToString() == "0")
+                   grid1[m, 43].View = C_cell;
+               else
+                   grid1[m, 43].View = C_cellr;
+               grid1[m, 43].AddController(valueChangedController);
+
+               grid1[m, 44] = new SourceGrid.Cells.Cell(myRead["s_code5"], typeof(string));
+               if (grid1[m, 44].Value == null)
+                   grid1[m, 44].View = C_cell;
+               else if (grid1[m, 44].Value.ToString() == "0")
+                   grid1[m, 44].View = C_cell;
+               else
+                   grid1[m, 44].View = C_cellr;
+               grid1[m, 44].AddController(valueChangedController);
+
+               grid1[m, 45] = new SourceGrid.Cells.Cell(myRead["s_code6"], typeof(string));
+               if (grid1[m, 45].Value == null)
+                   grid1[m, 45].View = C_cell;
+               else if (grid1[m, 45].Value.ToString() == "0")
+                   grid1[m, 45].View = C_cell;
+               else
+                   grid1[m, 45].View = C_cellr;
+               grid1[m, 45].AddController(valueChangedController);
+
+               grid1[m, 46] = new SourceGrid.Cells.Cell(myRead["p_code1"], typeof(string));
+               if (grid1[m, 46].Value == null)
+                   grid1[m, 46].View = C_cell;
+               else if (grid1[m, 46].Value.ToString() == "0")
+                   grid1[m, 46].View = C_cell;
+               else
+                   grid1[m, 46].View = C_cellr;
+               grid1[m, 46].AddController(valueChangedController);
+
+               grid1[m, 47] = new SourceGrid.Cells.Cell(myRead["p_code2"], typeof(string));
+               if (grid1[m, 47].Value == null)
+                   grid1[m, 47].View = C_cell;
+               else if (grid1[m, 47].Value.ToString() == "0")
+                   grid1[m, 47].View = C_cell;
+               else
+                   grid1[m, 47].View = C_cellr;
+               grid1[m, 47].AddController(valueChangedController);
+
+               grid1[m, 48] = new SourceGrid.Cells.Cell(myRead["p_code3"], typeof(string));
+               if (grid1[m, 48].Value == null)
+                   grid1[m, 48].View = C_cell;
+               else if (grid1[m, 48].Value.ToString() == "0")
+                   grid1[m, 48].View = C_cell;
+               else
+                   grid1[m, 48].View = C_cellr;
+               grid1[m, 48].AddController(valueChangedController);
+
+               grid1[m, 49] = new SourceGrid.Cells.Cell(myRead["p_code4"], typeof(string));
+               if (grid1[m, 49].Value == null)
+                   grid1[m, 49].View = C_cell;
+               else if (grid1[m, 49].Value.ToString() == "0")
+                   grid1[m, 49].View = C_cell;
+               else
+                   grid1[m, 49].View = C_cellr;
+               grid1[m, 49].AddController(valueChangedController);
+
+               grid1[m, 50] = new SourceGrid.Cells.Cell(myRead["p_code5"], typeof(string));
+               if (grid1[m, 50].Value == null)
+                   grid1[m, 50].View = C_cell;
+               else if (grid1[m, 50].Value.ToString() == "0")
+                   grid1[m, 50].View = C_cell;
+               else
+                   grid1[m, 50].View = C_cellr;
+               grid1[m, 50].AddController(valueChangedController);
+
+               grid1[m, 51] = new SourceGrid.Cells.Cell(myRead["p_code6"], typeof(string));
+               if (grid1[m, 51].Value == null)
+                   grid1[m, 51].View = C_cell;
+               else if (grid1[m, 51].Value.ToString() == "0")
+                   grid1[m, 51].View = C_cell;
+               else
+                   grid1[m, 51].View = C_cellr;
+               grid1[m, 51].AddController(valueChangedController);
+
+               grid1[m, 52] = new SourceGrid.Cells.Cell(myRead["p_code7"], typeof(string));
+               if (grid1[m, 52].Value == null)
+                   grid1[m, 52].View = C_cell;
+               else if (grid1[m, 52].Value.ToString() == "0")
+                   grid1[m, 52].View = C_cell;
+               else
+                   grid1[m, 52].View = C_cellr;
+               grid1[m, 52].AddController(valueChangedController);
+                 
+               grid1[m, 53] = new SourceGrid.Cells.Cell(myRead["lhd_code1"], typeof(string));
+               if (grid1[m, 53].Value == null)
+                   grid1[m, 53].View = C_cell;
+               else if (grid1[m, 53].Value.ToString() == "0")
+                   grid1[m, 53].View = C_cell;
+               else
+                   grid1[m, 53].View = C_cellr;
+               grid1[m, 53].AddController(valueChangedController);
+
+               grid1[m, 54] = new SourceGrid.Cells.Cell(myRead["lhd_code2"], typeof(string));
+               if (grid1[m, 54].Value == null)
+                   grid1[m, 54].View = C_cell;
+               else if (grid1[m, 54].Value.ToString() == "0")
+                   grid1[m, 54].View = C_cell;
+               else
+                   grid1[m, 54].View = C_cellr;
+               grid1[m, 54].AddController(valueChangedController);
+
+               grid1[m, 55] = new SourceGrid.Cells.Cell(myRead["lhd_code3"], typeof(string));
+               if (grid1[m, 55].Value == null)
+                   grid1[m, 55].View = C_cell;
+               else if (grid1[m, 55].Value.ToString() == "0")
+                   grid1[m, 55].View = C_cell;
+               else
+                   grid1[m, 55].View = C_cellr;
+               grid1[m, 55].AddController(valueChangedController);
+
+               grid1[m, 56] = new SourceGrid.Cells.Cell(myRead["lhd_code4"], typeof(string));
+               if (grid1[m, 56].Value == null)
+                   grid1[m, 56].View = C_cell;
+               else if (grid1[m, 56].Value.ToString() == "0")
+                   grid1[m, 56].View = C_cell;
+               else
+                   grid1[m, 56].View = C_cellr;
+               grid1[m, 56].AddController(valueChangedController);
+
+               grid1[m, 57] = new SourceGrid.Cells.Cell(myRead["lhd_code5"], typeof(string));
+               if (grid1[m, 57].Value == null)
+                   grid1[m, 57].View = C_cell;
+               else if (grid1[m, 57].Value.ToString() == "0")
+                   grid1[m, 57].View = C_cell;
+               else
+                   grid1[m, 57].View = C_cellr;
+               grid1[m, 57].AddController(valueChangedController);
+
+               grid1[m, 58] = new SourceGrid.Cells.Cell(myRead["lhd_code6"], typeof(string));
+               if (grid1[m, 58].Value == null)
+                   grid1[m, 58].View = C_cell;
+               else if (grid1[m, 58].Value.ToString() == "0")
+                   grid1[m, 58].View = C_cell;
+               else
+                   grid1[m, 58].View = C_cellr;
+               grid1[m, 58].AddController(valueChangedController);
+
+               grid1[m, 59] = new SourceGrid.Cells.Cell(myRead["j_code1"], typeof(string));
+               if (grid1[m, 59].Value == null)
+                   grid1[m, 59].View = C_cell;
+               else if (grid1[m, 59].Value.ToString() == "0")
+                   grid1[m, 59].View = C_cell;
+               else
+                   grid1[m, 59].View = C_cellr;
+               grid1[m, 59].AddController(valueChangedController);
+
+               grid1[m, 60] = new SourceGrid.Cells.Cell(myRead["j_code2"], typeof(string));
+               if (grid1[m, 60].Value == null)
+                   grid1[m, 60].View = C_cell;
+               else if (grid1[m, 60].Value.ToString() == "0")
+                   grid1[m, 60].View = C_cell;
+               else
+                   grid1[m, 60].View = C_cellr;
+               grid1[m, 60].AddController(valueChangedController);
+
+               grid1[m, 61] = new SourceGrid.Cells.Cell(myRead["j_code3"], typeof(string));
+               if (grid1[m, 61].Value == null)
+                   grid1[m, 61].View = C_cell;
+               else if (grid1[m, 61].Value.ToString() == "0")
+                   grid1[m, 61].View = C_cell;
+               else
+                   grid1[m, 61].View = C_cellr;
+               grid1[m, 61].AddController(valueChangedController);
+
+               grid1[m, 62] = new SourceGrid.Cells.Cell(myRead["j_code4"], typeof(string));
+               if (grid1[m, 62].Value == null)
+                   grid1[m, 62].View = C_cell;
+               else if (grid1[m, 62].Value.ToString() == "0")
+                   grid1[m, 62].View = C_cell;
+               else
+                   grid1[m, 62].View = C_cellr;
+               grid1[m, 62].AddController(valueChangedController);
+
+               grid1[m, 63] = new SourceGrid.Cells.Cell(myRead["j_code5"], typeof(string));
+               if (grid1[m, 63].Value == null)
+                   grid1[m, 63].View = C_cell;
+               else if (grid1[m, 63].Value.ToString() == "0")
+                   grid1[m, 63].View = C_cell;
+               else
+                   grid1[m, 63].View = C_cellr;
+               grid1[m, 63].AddController(valueChangedController);
+
+               grid1[m, 64] = new SourceGrid.Cells.Cell(myRead["j_code6"], typeof(string));
+               if (grid1[m, 64].Value == null)
+                   grid1[m, 64].View = C_cell;
+               else if (grid1[m, 64].Value.ToString() == "0")
+                   grid1[m, 64].View = C_cell;
+               else
+                   grid1[m, 64].View = C_cellr;
+               grid1[m, 64].AddController(valueChangedController);
+               
+               //새로추가
+               grid1[m, 65] = new SourceGrid.Cells.Cell(myRead["a_code1"], typeof(string));
+               if (grid1[m, 65].Value == null)
+                   grid1[m, 65].View = C_cell;
+               else if (grid1[m, 65].Value.ToString() == "0")
+                   grid1[m, 65].View = C_cell;
+               else
+                   grid1[m, 65].View = C_cellr;
+               grid1[m, 65].AddController(valueChangedController);
+               //   
+               grid1[m, 66] = new SourceGrid.Cells.Cell(myRead["a_code2"], typeof(string));
+               if (grid1[m, 66].Value == null)
+                   grid1[m, 66].View = C_cell;
+               else if (grid1[m, 66].Value.ToString() == "0")
+                   grid1[m, 66].View = C_cell;
+               else
+                   grid1[m, 66].View = C_cellr;
+               grid1[m, 66].AddController(valueChangedController);
+               //   
+               grid1[m, 67] = new SourceGrid.Cells.Cell(myRead["a_code3"], typeof(string));
+               if (grid1[m, 67].Value == null)
+                   grid1[m, 67].View = C_cell;
+               else if (grid1[m, 67].Value.ToString() == "0")
+                   grid1[m, 67].View = C_cell;
+               else
+                   grid1[m, 67].View = C_cellr;
+               grid1[m, 67].AddController(valueChangedController);
+               //   
+               grid1[m, 68] = new SourceGrid.Cells.Cell(myRead["a_code4"], typeof(string));
+               if (grid1[m, 68].Value == null)
+                   grid1[m, 68].View = C_cell;
+               else if (grid1[m, 68].Value.ToString() == "0")
+                   grid1[m, 68].View = C_cell;
+               else
+                   grid1[m, 68].View = C_cellr;
+               grid1[m, 68].AddController(valueChangedController);
+               //   
+               grid1[m, 69] = new SourceGrid.Cells.Cell(myRead["a_code5"], typeof(string));
+               if (grid1[m, 69].Value == null)
+                   grid1[m, 69].View = C_cell;
+               else if (grid1[m, 69].Value.ToString() == "0")
+                   grid1[m, 69].View = C_cell;
+               else
+                   grid1[m, 69].View = C_cellr;
+               grid1[m, 69].AddController(valueChangedController);
+               //   
+               grid1[m, 70] = new SourceGrid.Cells.Cell(myRead["a_code6"], typeof(string));
+               if (grid1[m, 70].Value == null)
+                   grid1[m, 70].View = C_cell;
+               else if (grid1[m, 70].Value.ToString() == "0")
+                   grid1[m, 70].View = C_cell;
+               else
+                   grid1[m, 70].View = C_cellr;
+               grid1[m, 70].AddController(valueChangedController);
+               //   
+               grid1[m, 71] = new SourceGrid.Cells.Cell(myRead["a_code7"], typeof(string));
+               if (grid1[m, 71].Value == null)
+                   grid1[m, 71].View = C_cell;
+               else if (grid1[m, 71].Value.ToString() == "0")
+                   grid1[m, 71].View = C_cell;
+               else
+                   grid1[m, 71].View = C_cellr;
+               grid1[m, 71].AddController(valueChangedController);
+               //
+               grid1[m, 72] = new SourceGrid.Cells.Cell(myRead["a_code8"], typeof(string));
+               if (grid1[m, 72].Value == null)
+                   grid1[m, 72].View = C_cell;
+               else if (grid1[m, 72].Value.ToString() == "0")
+                   grid1[m, 72].View = C_cell;
+               else
+                   grid1[m, 72].View = C_cellr;
+               grid1[m, 72].AddController(valueChangedController);
+               //
+               grid1[m, 73] = new SourceGrid.Cells.Cell(myRead["a_code9"], typeof(string));
+               if (grid1[m, 73].Value == null)
+                   grid1[m, 73].View = C_cell;
+               else if (grid1[m, 73].Value.ToString() == "0")
+                   grid1[m, 73].View = C_cell;
+               else
+                   grid1[m, 73].View = C_cellr;
+               grid1[m, 73].AddController(valueChangedController);
+               //
+               grid1[m, 74] = new SourceGrid.Cells.Cell(myRead["a_code10"], typeof(string));
+               if (grid1[m, 74].Value == null)
+                   grid1[m, 74].View = C_cell;
+               else if (grid1[m, 74].Value.ToString() == "0")
+                   grid1[m, 74].View = C_cell;
+               else
+                   grid1[m, 74].View = C_cellr;
+               grid1[m, 74].AddController(valueChangedController);
+               //
+               grid1[m, 75] = new SourceGrid.Cells.Cell(myRead["a_code11"], typeof(string));
+               if (grid1[m, 75].Value == null)
+                   grid1[m, 75].View = C_cell;
+               else if (grid1[m, 75].Value.ToString() == "0")
+                   grid1[m, 75].View = C_cell;
+               else
+                   grid1[m, 75].View = C_cellr;
+               grid1[m, 75].AddController(valueChangedController);
+               //
+               grid1[m, 76] = new SourceGrid.Cells.Cell(myRead["a_code12"], typeof(string));
+               if (grid1[m, 76].Value == null)
+                   grid1[m, 76].View = C_cell;
+               else if (grid1[m, 76].Value.ToString() == "0")
+                   grid1[m, 76].View = C_cell;
+               else
+                   grid1[m, 76].View = C_cellr;
+               grid1[m, 76].AddController(valueChangedController);
+               //
+               grid1[m, 77] = new SourceGrid.Cells.Cell(myRead["a_code13"], typeof(string));
+               if (grid1[m, 77].Value == null)
+                   grid1[m, 77].View = C_cell;
+               else if (grid1[m, 77].Value.ToString() == "0")
+                   grid1[m, 77].View = C_cell;
+               else
+                   grid1[m, 77].View = C_cellr;
+               grid1[m, 77].AddController(valueChangedController);
+               //
+               grid1[m, 78] = new SourceGrid.Cells.Cell(myRead["a_code14"], typeof(string));
+               if (grid1[m, 78].Value == null)
+                   grid1[m, 78].View = C_cell;
+               else if (grid1[m, 78].Value.ToString() == "0")
+                   grid1[m, 78].View = C_cell;
+               else
+                   grid1[m, 78].View = C_cellr;
+               grid1[m, 78].AddController(valueChangedController);
+               //
+               grid1[m, 79] = new SourceGrid.Cells.Cell(myRead["a_code15"], typeof(string));
+               if (grid1[m, 79].Value == null)
+                   grid1[m, 79].View = C_cell;
+               else if (grid1[m, 79].Value.ToString() == "0")
+                   grid1[m, 79].View = C_cell;
+               else
+                   grid1[m, 79].View = C_cellr;
+               grid1[m, 79].AddController(valueChangedController);
+               //
+               grid1[m, 80] = new SourceGrid.Cells.Cell(myRead["a_code16"], typeof(string));
+               if (grid1[m, 80].Value == null)
+                   grid1[m, 80].View = C_cell;
+               else if (grid1[m, 80].Value.ToString() == "0")
+                   grid1[m, 80].View = C_cell;
+               else
+                   grid1[m, 80].View = C_cellr;
+               grid1[m, 80].AddController(valueChangedController);
+               //
+               grid1[m, 81] = new SourceGrid.Cells.Cell(myRead["a_code17"], typeof(string));
+               if (grid1[m, 81].Value == null)
+                   grid1[m, 81].View = C_cell;
+               else if (grid1[m, 81].Value.ToString() == "0")
+                   grid1[m, 81].View = C_cell;
+               else
+                   grid1[m, 81].View = C_cellr;
+               grid1[m, 81].AddController(valueChangedController);
+               //
+               grid1[m, 82] = new SourceGrid.Cells.Cell(myRead["a_code18"], typeof(string));
+               if (grid1[m, 82].Value == null)
+                   grid1[m, 82].View = C_cell;
+               else if (grid1[m, 82].Value.ToString() == "0")
+                   grid1[m, 82].View = C_cell;
+               else
+                   grid1[m, 82].View = C_cellr;
+               grid1[m, 82].AddController(valueChangedController);
+               //
+               grid1[m, 83] = new SourceGrid.Cells.Cell(myRead["a_code19"], typeof(string));
+               if (grid1[m, 83].Value == null)
+                   grid1[m, 83].View = C_cell;
+               else if (grid1[m, 83].Value.ToString() == "0")
+                   grid1[m, 83].View = C_cell;
+               else
+                   grid1[m, 83].View = C_cellr;
+               grid1[m, 83].AddController(valueChangedController);
+               //
+               grid1[m, 84] = new SourceGrid.Cells.Cell(myRead["a_code20"], typeof(string));
+               if (grid1[m, 84].Value == null)
+                   grid1[m, 84].View = C_cell;
+               else if (grid1[m, 84].Value.ToString() == "0")
+                   grid1[m, 84].View = C_cell;
+               else
+                   grid1[m, 84].View = C_cellr;
+               grid1[m, 84].AddController(valueChangedController);
+                //
+                grid1[m, 85] = new SourceGrid.Cells.Cell(myRead["a_code21"], typeof(string));
+                if (grid1[m, 85].Value == null)
+                    grid1[m, 85].View = C_cell;
+                else if (grid1[m, 85].Value.ToString() == "0")
+                    grid1[m, 85].View = C_cell;
+                else
+                    grid1[m, 85].View = C_cellr;
+                grid1[m, 85].AddController(valueChangedController);
+                //
+                grid1[m, 86] = new SourceGrid.Cells.Cell(myRead["a_code22"], typeof(string));
+                if (grid1[m, 86].Value == null)
+                    grid1[m, 86].View = C_cell;
+                else if (grid1[m, 86].Value.ToString() == "0")
+                    grid1[m, 86].View = C_cell;
+                else
+                    grid1[m, 86].View = C_cellr;
+                grid1[m, 86].AddController(valueChangedController);
+                //
+                grid1[m, 87] = new SourceGrid.Cells.Cell(myRead["a_code23"], typeof(string));
+                if (grid1[m, 87].Value == null)
+                    grid1[m, 87].View = C_cell;
+                else if (grid1[m, 87].Value.ToString() == "0")
+                    grid1[m, 87].View = C_cell;
+                else
+                    grid1[m, 87].View = C_cellr;
+                grid1[m, 87].AddController(valueChangedController);
+                //
+                grid1[m, 88] = new SourceGrid.Cells.Cell(myRead["a_code24"], typeof(string));
+                if (grid1[m, 88].Value == null)
+                    grid1[m, 88].View = C_cell;
+                else if (grid1[m, 88].Value.ToString() == "0")
+                    grid1[m, 88].View = C_cell;
+                else
+                    grid1[m, 88].View = C_cellr;
+                grid1[m, 88].AddController(valueChangedController);
+                //
+                grid1[m, 89] = new SourceGrid.Cells.Cell(myRead["a_code25"], typeof(string));
+                if (grid1[m, 89].Value == null)
+                    grid1[m, 89].View = C_cell;
+                else if (grid1[m, 89].Value.ToString() == "0")
+                    grid1[m, 89].View = C_cell;
+                else
+                    grid1[m, 89].View = C_cellr;
+                grid1[m, 89].AddController(valueChangedController);
+                //
+                grid1[m, 90] = new SourceGrid.Cells.Cell(myRead["a_code26"], typeof(string));
+                if (grid1[m, 90].Value == null)
+                    grid1[m, 90].View = C_cell;
+                else if (grid1[m, 90].Value.ToString() == "0")
+                    grid1[m, 90].View = C_cell;
+                else
+                    grid1[m, 90].View = C_cellr;
+                grid1[m, 90].AddController(valueChangedController);
+                //
+                grid1[m, 91] = new SourceGrid.Cells.Cell(myRead["a_code27"], typeof(string));
+                if (grid1[m, 91].Value == null)
+                    grid1[m, 91].View = C_cell;
+                else if (grid1[m, 91].Value.ToString() == "0")
+                    grid1[m, 91].View = C_cell;
+                else
+                    grid1[m, 91].View = C_cellr;
+                grid1[m, 91].AddController(valueChangedController);
+                //
+                grid1[m, 92] = new SourceGrid.Cells.Cell(myRead["a_code28"], typeof(string));
+                if (grid1[m, 92].Value == null)
+                    grid1[m, 92].View = C_cell;
+                else if (grid1[m, 92].Value.ToString() == "0")
+                    grid1[m, 92].View = C_cell;
+                else
+                    grid1[m, 92].View = C_cellr;
+                grid1[m, 92].AddController(valueChangedController);
+                //
+                grid1[m, 93] = new SourceGrid.Cells.Cell(myRead["a_code29"], typeof(string));
+                if (grid1[m, 93].Value == null)
+                    grid1[m, 93].View = C_cell;
+                else if (grid1[m, 93].Value.ToString() == "0")
+                    grid1[m, 93].View = C_cell;
+                else
+                    grid1[m, 93].View = C_cellr;
+                grid1[m, 93].AddController(valueChangedController);
+                //
+                grid1[m, 94] = new SourceGrid.Cells.Cell(myRead["a_code30"], typeof(string));
+                if (grid1[m, 94].Value == null)
+                    grid1[m, 94].View = C_cell;
+                else if (grid1[m, 94].Value.ToString() == "0")
+                    grid1[m, 94].View = C_cell;
+                else
+                    grid1[m, 94].View = C_cellr;
+                grid1[m, 94].AddController(valueChangedController);
+                //
+                grid1[m, 95] = new SourceGrid.Cells.Cell(myRead["a_code31"], typeof(string));
+                if (grid1[m, 95].Value == null)
+                    grid1[m, 95].View = C_cell;
+                else if (grid1[m, 95].Value.ToString() == "0")
+                    grid1[m, 95].View = C_cell;
+                else
+                    grid1[m, 95].View = C_cellr;
+                grid1[m, 95].AddController(valueChangedController);
+                //
+                grid1[m, 96] = new SourceGrid.Cells.Cell(myRead["a_code32"], typeof(string));
+                if (grid1[m, 96].Value == null)
+                    grid1[m, 96].View = C_cell;
+                else if (grid1[m, 96].Value.ToString() == "0")
+                    grid1[m, 96].View = C_cell;
+                else
+                    grid1[m, 96].View = C_cellr;
+                grid1[m, 96].AddController(valueChangedController);
+                //
+                grid1[m, 97] = new SourceGrid.Cells.Cell(myRead["a_code33"], typeof(string));
+                if (grid1[m, 97].Value == null)
+                    grid1[m, 97].View = C_cell;
+                else if (grid1[m, 97].Value.ToString() == "0")
+                    grid1[m, 97].View = C_cell;
+                else
+                    grid1[m, 97].View = C_cellr;
+                grid1[m, 97].AddController(valueChangedController);
+                //
+                grid1[m, 98] = new SourceGrid.Cells.Cell(myRead["a_code34"], typeof(string));
+                if (grid1[m, 98].Value == null)
+                    grid1[m, 98].View = C_cell;
+                else if (grid1[m, 98].Value.ToString() == "0")
+                    grid1[m, 98].View = C_cell;
+                else
+                    grid1[m, 98].View = C_cellr;
+                grid1[m, 98].AddController(valueChangedController);
+                //
+                grid1[m, 99] = new SourceGrid.Cells.Cell(myRead["a_code35"], typeof(string));
+                if (grid1[m, 99].Value == null)
+                    grid1[m, 99].View = C_cell;
+                else if (grid1[m, 99].Value.ToString() == "0")
+                    grid1[m, 99].View = C_cell;
+                else
+                    grid1[m, 99].View = C_cellr;
+                grid1[m, 99].AddController(valueChangedController);
+                //
+                grid1[m, 100] = new SourceGrid.Cells.Cell(myRead["a_code36"], typeof(string));
+                if (grid1[m, 100].Value == null)
+                    grid1[m, 100].View = C_cell;
+                else if (grid1[m, 100].Value.ToString() == "0")
+                    grid1[m, 100].View = C_cell;
+                else
+                    grid1[m, 100].View = C_cellr;
+                grid1[m, 100].AddController(valueChangedController);
+                //
+                grid1[m, 101] = new SourceGrid.Cells.Cell(myRead["a_code37"], typeof(string));
+                if (grid1[m, 101].Value == null)
+                    grid1[m, 101].View = C_cell;
+                else if (grid1[m, 101].Value.ToString() == "0")
+                    grid1[m, 101].View = C_cell;
+                else
+                    grid1[m, 101].View = C_cellr;
+                grid1[m, 101].AddController(valueChangedController);
+                //
+                grid1[m, 102] = new SourceGrid.Cells.Cell(myRead["a_code38"], typeof(string));
+                if (grid1[m, 102].Value == null)
+                    grid1[m, 102].View = C_cell;
+                else if (grid1[m, 102].Value.ToString() == "0")
+                    grid1[m, 102].View = C_cell;
+                else
+                    grid1[m, 102].View = C_cellr;
+                grid1[m, 102].AddController(valueChangedController);
+                //
+                grid1[m, 103] = new SourceGrid.Cells.Cell(myRead["a_code39"], typeof(string));
+                if (grid1[m, 103].Value == null)
+                    grid1[m, 103].View = C_cell;
+                else if (grid1[m, 103].Value.ToString() == "0")
+                    grid1[m, 103].View = C_cell;
+                else
+                    grid1[m, 103].View = C_cellr;
+                grid1[m, 103].AddController(valueChangedController);
+                //
+                grid1[m, 104] = new SourceGrid.Cells.Cell(myRead["memo1"], typeof(string));
+               grid1[m, 105] = new SourceGrid.Cells.Cell(myRead["memo2"], typeof(string));
+               m++;
+           }
+           //
+           if (act_id == false)  //수정불가
+           {
+               for (int i = 2; i < grid1.RowsCount; i++)
+               {
+                   for (int s = 2; s < grid1.ColumnsCount; s++)
+                   {
+                       grid1[i, s].Editor = disable_cell;
+                   }
+               }
+           }
+           //
+           grid1.Columns[0].Width = 100;
+           grid1.Columns[1].Width = 24;
+           grid1.Columns[2].Width = 46;
+           grid1.Columns[3].Width = 230;  //remark
+           grid1.Columns[4].Width = 40;  //버튼
+           grid1.Columns[5].Width = 120;  //
+           grid1.Columns[6].Width = 80;  //
+           grid1.Columns[7].Width = 80;  //
+           grid1.Columns[8].Width = 80;  //
+           grid1.Columns[9].Width = 80;  //
+           grid1.Columns[10].Width = 80;  //
+           grid1.Columns[11].Width = 80;  //
+           grid1.Columns[12].Width = 80;  //
+           grid1.Columns[13].Width = 80;  //
+           grid1.Columns[14].Width = 80;  //
+           grid1.Columns[15].Width = 80;  //
+           grid1.Columns[16].Width = 80;  //
+           grid1.Columns[17].Width = 80;  //
+           grid1.Columns[18].Width = 80;  //
+           grid1.Columns[19].Width = 80;  //
+           grid1.Columns[20].Width = 80;  //
+           grid1.Columns[21].Width = 80;  //
+           grid1.Columns[22].Width = 80;  //
+           grid1.Columns[23].Width = 80;  //
+           grid1.Columns[24].Width = 80;  //
+           grid1.Columns[25].Width = 80;  //
+           grid1.Columns[26].Width = 80;  //
+           grid1.Columns[27].Width = 80;  //
+           grid1.Columns[28].Width = 80;  //
+           grid1.Columns[29].Width = 80;  //
+           grid1.Columns[30].Width = 80;  //
+           grid1.Columns[31].Width = 80;  //
+           grid1.Columns[32].Width = 80;  //
+           grid1.Columns[33].Width = 80;  //
+           grid1.Columns[34].Width = 80;  //
+           grid1.Columns[35].Width = 80;  //
+           grid1.Columns[36].Width = 80;  //
+           grid1.Columns[37].Width = 80;  //
+           grid1.Columns[38].Width = 80;  //
+           grid1.Columns[39].Width = 80;  //
+           grid1.Columns[40].Width = 80;  //
+           grid1.Columns[41].Width = 80;  //
+           grid1.Columns[42].Width = 80;  //
+           grid1.Columns[43].Width = 80;  //
+           grid1.Columns[44].Width = 80;  //
+           grid1.Columns[45].Width = 80;  //
+           grid1.Columns[46].Width = 80;  //
+           grid1.Columns[47].Width = 80;  //
+           grid1.Columns[48].Width = 80;  //
+           grid1.Columns[49].Width = 80;  //
+           grid1.Columns[50].Width = 80;  //
+           grid1.Columns[51].Width = 80;  //
+           grid1.Columns[52].Width = 80;  //
+           grid1.Columns[53].Width = 80;  //
+           grid1.Columns[54].Width = 80;  //
+           grid1.Columns[55].Width = 80;  //
+           grid1.Columns[56].Width = 80;  //
+           grid1.Columns[57].Width = 80;  //
+           grid1.Columns[58].Width = 80;  //
+           grid1.Columns[59].Width = 80;  //
+           grid1.Columns[60].Width = 80;  //
+           grid1.Columns[61].Width = 80;  //
+           grid1.Columns[62].Width = 80;  //
+           grid1.Columns[63].Width = 80;  //
+           grid1.Columns[64].Width = 80;  //
+           grid1.Columns[65].Width = 80;  //
+           grid1.Columns[66].Width = 80;  //
+           grid1.Columns[67].Width = 80;  //
+           grid1.Columns[68].Width = 80;  //
+           grid1.Columns[69].Width = 80;  //
+           grid1.Columns[70].Width = 80;  //
+           grid1.Columns[71].Width = 80;  //
+           grid1.Columns[72].Width = 80;  //
+           grid1.Columns[73].Width = 80;  //
+           grid1.Columns[74].Width = 80;  //
+           grid1.Columns[75].Width = 80;  //
+           grid1.Columns[76].Width = 80;  //
+           grid1.Columns[77].Width = 80;  //
+           grid1.Columns[78].Width = 80;  //
+           grid1.Columns[79].Width = 80;  //
+           grid1.Columns[80].Width = 80;  //
+           grid1.Columns[81].Width = 80;  //
+           grid1.Columns[82].Width = 80;  //
+           grid1.Columns[83].Width = 80;  //
+            grid1.Columns[84].Width = 80;  //
+            grid1.Columns[85].Width = 80;  //
+            grid1.Columns[86].Width = 80;  //
+            grid1.Columns[87].Width = 80;  //
+            grid1.Columns[88].Width = 80;  //
+            grid1.Columns[89].Width = 80;  //
+            grid1.Columns[90].Width = 80;  //
+            grid1.Columns[91].Width = 80;  //
+            grid1.Columns[92].Width = 80;  //
+            grid1.Columns[93].Width = 80;  //
+            grid1.Columns[94].Width = 80;  //
+            grid1.Columns[95].Width = 80;  //
+            grid1.Columns[96].Width = 80;  //
+            grid1.Columns[97].Width = 80;  //
+            grid1.Columns[98].Width = 80;  //
+            grid1.Columns[99].Width = 80;  //
+            grid1.Columns[100].Width = 80;  //
+            grid1.Columns[101].Width = 80;  //
+            grid1.Columns[102].Width = 80;  //
+
+            grid1.Columns[103].Width = 100;  //
+           grid1.Columns[104].Width = 100;  //
+           //
+           myRead.Close();
+           DBConn.Close();
+
+           if (Sno != 0)
+           {
+               for (int i = 1; i < grid1.RowsCount; i++)
+               {
+                   if (grid1[i, 2].Value.Equals(Sno))
+                   {
+                       grid1[i, 1].Value = true;
+                       break;
+                   }
+               }
+            }
+            grid1.Focus();
+        }
+
+        public class CellClickEvent : SourceGrid.Cells.Controllers.ControllerBase  //클릭이벤트
+        {
+            public override void OnClick(SourceGrid.CellContext sender, EventArgs e)
+            {
+                base.OnClick(sender, e);
+                int ps = sender.Position.Column;
+                SourceGrid.Grid grid = (SourceGrid.Grid)sender.Grid;
+                int rs = grid.Selection.ActivePosition.Row;
+                //
+                if (ps == 4)
+                {
+                    string memo_dat = "";
+                    string memo_dat2 = "";
+                    //
+                    string  row_no = grid[grid.Selection.ActivePosition.Row, 0].Value.ToString().Trim();
+                    if(grid[grid.Selection.ActivePosition.Row,84].Value != null)
+                        memo_dat = grid[grid.Selection.ActivePosition.Row,84].Value.ToString().Trim();
+                    if (grid[grid.Selection.ActivePosition.Row, 85].Value != null)
+                        memo_dat2 = grid[grid.Selection.ActivePosition.Row, 85].Value.ToString().Trim();
+                    //
+                    Form_memo_d fm = new Form_memo_d(row_no, memo_dat, memo_dat2);
+                    fm.ShowDialog();
+                    //if (fm.ShowDialog() == DialogResult.OK)
+                    //{
+                        memo_dat = fm.mtext1;
+                        memo_dat2 = fm.mtext2;
+                        grid[grid.Selection.ActivePosition.Row, 84].Value = fm.mtext1;
+                        grid[grid.Selection.ActivePosition.Row, 85].Value = fm.mtext2;
+                    //}
+
+                }
+                //
+                if (Config.tem_b == false) //자료입력 가능
+                {
+                    if (ps == 1)
+                    {
+                        for (int i = 2; i < grid.RowsCount; i++)
+                        {
+                            if (i != rs)
+                                grid[i, 1].Value = false;
+                        }
+                    }
+                }
+            }
+        }
+
+        public class ValueChangedEvent : SourceGrid.Cells.Controllers.ControllerBase
+        {
+            public override void OnValueChanged(SourceGrid.CellContext sender, EventArgs e)
+            {
+                base.OnValueChanged(sender, e);
+                int ps = sender.Position.Column;
+                SourceGrid.Grid grid = (SourceGrid.Grid)sender.Grid;
+                string row_no = grid[grid.Selection.ActivePosition.Row, 0].ToString().Trim();
+                string dat = sender.Value == null? "":sender.Value.ToString().Trim();
+                string cQuery;
+                //
+                if (Config.tem_b == true) //자료입력 가능
+                {
+                    if (ps == 2)
+                        cQuery = " update C_dtable set code_id='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 3 )
+                        cQuery = " update C_dtable set remark='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 5)
+                        cQuery = " update C_dtable set memo3  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 6 )
+                         cQuery = " update C_dtable set page  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 7 )                      
+                         cQuery = " update C_dtable set jung_R='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 8 )
+                         cQuery = " update C_dtable set busu='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 9 )
+                         cQuery = " update C_dtable set gokji='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 10)
+                         cQuery = " update C_dtable set book_jul_a='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 11)
+                         cQuery = " update C_dtable set book_jul_b='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 12)
+                         cQuery = " update C_dtable set print_jul_a='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 13)
+                         cQuery = " update C_dtable set print_jul_b='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 14)
+                         cQuery = " update C_dtable set paper_weight='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 15)
+                         cQuery = " update C_dtable set don_hon='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 16)
+                         cQuery = " update C_dtable set nalgae='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 17)
+                         cQuery = " update C_dtable set count='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 18)
+                         cQuery = " update C_dtable set sebari='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 19)
+                         cQuery = " update C_dtable set miso='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 20)
+                         cQuery = " update C_dtable set habji='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 21)
+                         cQuery = " update C_dtable set jubji='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 22)
+                         cQuery = " update C_dtable set size_a='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 23)
+                         cQuery = " update C_dtable set size_b='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 24)
+                         cQuery = " update C_dtable set bond_side='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 25)
+                         cQuery = " update C_dtable set croth='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 26)
+                         cQuery = " update C_dtable set pok='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 27)
+                         cQuery = " update C_dtable set gili='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 28)
+                         cQuery = " update C_dtable set jungmae='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 29)
+                         cQuery = " update C_dtable set doc_sz_a='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 30)
+                         cQuery = " update C_dtable set doc_sz_b='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 31)
+                        cQuery = " update C_dtable set  daesu='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 32)
+                        cQuery = " update C_dtable set  cover_sz_a='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 33)
+                        cQuery = " update C_dtable set  cover_sz_b='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 34)
+                        cQuery = " update C_dtable set  item='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 35)
+                        cQuery = " update C_dtable set  jang='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 36)
+                        cQuery = " update C_dtable set  go='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 37)
+                        cQuery = " update C_dtable set  print_kind='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 38)
+                        cQuery = " update C_dtable set  paper_kind='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 39)
+                        cQuery = " update C_dtable set  book_thick='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 40)
+                        cQuery = " update C_dtable set  s_code1='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 41)                     
+                        cQuery = " update C_dtable set  s_code2='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 42)                     
+                        cQuery = " update C_dtable set  s_code3='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 43)                     
+                        cQuery = " update C_dtable set  s_code4='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 44)                     
+                        cQuery = " update C_dtable set  s_code5   ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 45)                     
+                        cQuery = " update C_dtable set  s_code6   ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 46)                     
+                        cQuery = " update C_dtable set  p_code1   ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 47)                     
+                        cQuery = " update C_dtable set  p_code2   ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 48)                     
+                        cQuery = " update C_dtable set  p_code3   ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 49)                     
+                        cQuery = " update C_dtable set  p_code4   ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 50)                     
+                        cQuery = " update C_dtable set  p_code5   ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 51)                     
+                        cQuery = " update C_dtable set  p_code6   ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 52)                     
+                        cQuery = " update C_dtable set  p_code7   ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 53)                     
+                        cQuery = " update C_dtable set  lhd_code1 ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 54)                     
+                        cQuery = " update C_dtable set  lhd_code2 ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 55)                     
+                        cQuery = " update C_dtable set  lhd_code3 ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 56)                     
+                        cQuery = " update C_dtable set  lhd_code4 ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 57)                     
+                        cQuery = " update C_dtable set  lhd_code5 ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 58)                     
+                        cQuery = " update C_dtable set  lhd_code6 ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 59)                     
+                        cQuery = " update C_dtable set  j_code1   ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 60)                     
+                        cQuery = " update C_dtable set  j_code2   ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 61)                     
+                        cQuery = " update C_dtable set  j_code3   ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 62)                     
+                        cQuery = " update C_dtable set  j_code4   ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 63)                     
+                        cQuery = " update C_dtable set  j_code5   ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 64)                     
+                        cQuery = " update C_dtable set  j_code6   ='" + dat + "' where row_id='" + row_no + "'";
+
+                    else if (ps == 65)
+                        cQuery = " update C_dtable set  a_code1   ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 66)
+                        cQuery = " update C_dtable set  a_code2   ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 67)
+                        cQuery = " update C_dtable set  a_code3   ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 68)
+                        cQuery = " update C_dtable set  a_code4   ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 69)
+                        cQuery = " update C_dtable set  a_code5   ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 70)
+                        cQuery = " update C_dtable set  a_code6   ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 71)
+                        cQuery = " update C_dtable set  a_code7   ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 72)
+                        cQuery = " update C_dtable set  a_code8   ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 73)
+                        cQuery = " update C_dtable set  a_code9   ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 74)
+                        cQuery = " update C_dtable set  a_code10  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 75)
+                        cQuery = " update C_dtable set  a_code11  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 76)
+                        cQuery = " update C_dtable set  a_code12  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 77)
+                        cQuery = " update C_dtable set  a_code13  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 78)
+                        cQuery = " update C_dtable set  a_code14  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 79)
+                        cQuery = " update C_dtable set  a_code15  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 80)
+                        cQuery = " update C_dtable set  a_code16  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 81)
+                        cQuery = " update C_dtable set  a_code17  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 82)
+                        cQuery = " update C_dtable set  a_code18  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 83)
+                        cQuery = " update C_dtable set  a_code19  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 84)
+                        cQuery = " update C_dtable set  a_code20  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 85)
+                        cQuery = " update C_dtable set  a_code21  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 86)
+                        cQuery = " update C_dtable set  a_code22  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 87)
+                        cQuery = " update C_dtable set  a_code23  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 88)
+                        cQuery = " update C_dtable set  a_code24  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 89)
+                        cQuery = " update C_dtable set  a_code25  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 90)
+                        cQuery = " update C_dtable set  a_code26  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 91)
+                        cQuery = " update C_dtable set  a_code27  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 92)
+                        cQuery = " update C_dtable set  a_code28  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 93)
+                        cQuery = " update C_dtable set  a_code29  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 94)
+                        cQuery = " update C_dtable set  a_code30  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 95)
+                        cQuery = " update C_dtable set  a_code31  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 96)
+                        cQuery = " update C_dtable set  a_code32  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 97)
+                        cQuery = " update C_dtable set  a_code33  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 98)
+                        cQuery = " update C_dtable set  a_code34  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps == 99)
+                        cQuery = " update C_dtable set  a_code35  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps ==100)
+                        cQuery = " update C_dtable set  a_code36  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps ==101)
+                        cQuery = " update C_dtable set  a_code37  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps ==102)
+                        cQuery = " update C_dtable set  a_code38  ='" + dat + "' where row_id='" + row_no + "'";
+                    else if (ps ==103)
+                        cQuery = " update C_dtable set  a_code39  ='" + dat + "' where row_id='" + row_no + "'";
+                    else
+                         return;
+                    //
+                    var DBConn = new MySqlConnection(Config.DB_con1);
+                    DBConn.Open();
+                    var cmd = new MySqlCommand(cQuery, DBConn);
+                    if (cmd.ExecuteNonQuery() == 0)
+                        MessageBox.Show("서버 자료 수정에 실패 했습니다.");
+                    DBConn.Close();
+                }
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)  //저장
+        {
+            string dat = "";
+            string dat1 = "";
+
+            for (int i = 1; i < grid1.RowsCount; i++)
+            {
+                if (grid1[i, 1].Value.Equals(true))
+                {
+                    dat = grid1[i, 0].Value.ToString();
+                    dat1 = grid1[i, 2].Value.ToString();
+                    break;
+                }
+            }
+            this.DialogResult = DialogResult.OK;
+            xcc = dat;
+            normal_code = dat1;
+            this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)  //추가
+        {
+            var DBConn = new MySqlConnection(Config.DB_con1);
+            DBConn.Open();
+            string cQuery = "";
+            cQuery = " insert into C_dtable (code_id";
+            cQuery += ",page,jung_R,busu,gokji,book_jul_a,book_jul_b,print_jul_a,print_jul_b,paper_weight";
+            cQuery += ",don_hon,nalgae,count,sebari,miso,habji,jubji,size_a,size_b,bond_side,croth,pok,gili";
+            cQuery += ",jungmae,doc_sz_a,doc_sz_b,daesu,cover_sz_a,cover_sz_b,item,jang,go,print_kind,paper_kind";
+            cQuery += ",book_thick,s_code1,s_code2,s_code3,s_code4,s_code5,s_code6,p_code1,p_code2,p_code3,p_code4";   
+            cQuery += ",p_code5,p_code6,p_code7,lhd_code1,lhd_code2,lhd_code3,lhd_code4,lhd_code5,lhd_code6,j_code1";   
+            cQuery += ",j_code2,j_code3,j_code4,j_code5,j_code6";
+            cQuery += ",a_code1,a_code2,a_code3,a_code4,a_code5,a_code6,a_code7,a_code8,a_code9,a_code10";
+            cQuery += ",a_code11,a_code12,a_code13,a_code14,a_code15,a_code16,a_code17,a_code18,a_code19,a_code20)";
+            cQuery += " select MAX(code_id)+1,'','','','','','','','','','','','','','','','','','','','','','','',''";
+            cQuery += ",'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''";
+            cQuery += ",'','','','','','','','','','','','','','','','','','','',''";
+            cQuery += "from C_dtable";
+           
+            var cmd = new MySqlCommand(cQuery, DBConn);
+            //
+            if (cmd.ExecuteNonQuery() == 0)
+            {
+                MessageBox.Show("서버 자료 등록에 실패 했습니다.");
+                DBConn.Close();
+                return;
+            }
+            else
+            {
+                select();
+            }
+            DBConn.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)  //삭제
+        {
+            if (MessageBox.Show("선택하신 항목을 삭제합니까 ?", "항목 삭제", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                string[] sd = new string[grid1.RowsCount];//
+                for (int i = 0; i < sd.Length; i++)
+                    sd[i] = "0";
+                //
+                int s = 1;
+                for (int i = 1; i < grid1.RowsCount; i++)
+                    if (grid1[i, 1].Value.Equals(true))
+                    {
+                        sd[s] = grid1[i, 0].Value.ToString().Trim();
+                        s++;
+                    }
+
+                //  DB 삭제
+                var DBConn = new MySqlConnection(Config.DB_con1);
+                DBConn.Open();
+                //
+                for (int i = 1; i < sd.Length; i++)
+                {
+
+                    if (sd[i].Equals("0"))
+                        break;
+                    else
+                    {
+                        string row_no = sd[i];
+                        string cQuery = " delete from C_dtable where row_id='" + row_no + "'";
+                        var cmd = new MySqlCommand(cQuery, DBConn);
+                        if (cmd.ExecuteNonQuery() == 0)
+                        {
+                            MessageBox.Show("서버 자료 삭제에 실패 했습니다.");
+                            DBConn.Close();
+                            break;
+                        }
+                    }
+                }
+                DBConn.Close();
+                //  그리드 삭제
+                for (int i = 1; i < sd.Length; i++)
+                {
+                    if (sd[i].Equals("0"))
+                        break;
+                    else
+                    {
+                        for (s = 1; s < grid1.RowsCount; s++)
+                        {
+                            if (grid1[s, 0].Value.ToString().Equals(sd[i]))
+                            {
+                                grid1.Rows.Remove(s);
+                            }
+                        }
+                    }
+                }
+                if (grid1.RowsCount > 1)
+                {
+                    grid1.Selection.FocusFirstCell(true);
+                }
+            }
+        }
+
+        private class EditableColumnHeader : SourceGrid.Cells.ColumnHeader
+        {
+            private static LeftClickEditing leftClickEditing = new LeftClickEditing();
+            static EditableColumnHeader()
+            {
+            }
+
+            public EditableColumnHeader(string caption)  : base(caption)
+            {
+                SourceGrid.Cells.Views.ColumnHeader view = new SourceGrid.Cells.Views.ColumnHeader();
+                view.Font = new Font(FontFamily.GenericSansSerif, 8, FontStyle.Regular);
+                view.TextAlignment = DevAge.Drawing.ContentAlignment.MiddleCenter;
+                View = view;
+                AutomaticSortEnabled = false;
+                AddController(leftClickEditing);
+                RemoveController(SourceGrid.Cells.Controllers.Unselectable.Default);
+            }
+
+            private class LeftClickEditing : SourceGrid.Cells.Controllers.ControllerBase
+            {
+                public override void OnMouseDown(SourceGrid.CellContext sender, MouseEventArgs e)
+                {
+                    base.OnMouseDown(sender, e);
+
+                    if (e.Button == MouseButtons.Left)
+                    {
+                        if (sender.Grid.Selection.ActivePosition.Row == 0)
+                        {
+                            SourceGrid.Grid grid = (SourceGrid.Grid)sender.Grid;
+                            string c_name = grid[1,grid.Selection.ActivePosition.Column].ToString();
+                            // 
+                            var DBConn = new MySqlConnection(Config.DB_con1);
+                            DBConn.Open();
+                            string cQuery = " select memo,title_name,nos,expression FROM C_dtable_m where col_name='"+c_name+"'";
+                            var cmd = new MySqlCommand(cQuery, DBConn);
+                            var myRead = cmd.ExecuteReader();
+                            string text = "";
+                            string text1 = "";
+                            string text2 = "";
+                            string expression1 = "";
+                            string expression2 = "";
+                            string[] expression_temp = null;
+                            if (myRead.Read())
+                            {
+                                text = myRead["memo"].ToString();
+                                text1 = myRead["title_name"].ToString();
+                                text2 = myRead["nos"].ToString();
+                                expression_temp = myRead["expression"].ToString().Replace("{0}","¿").Split('¿');
+                                if(expression_temp.Length == 2)
+                                {
+                                    expression1 = expression_temp[0];
+                                    expression2 = expression_temp[1];
+                                }
+                            }
+                            myRead.Close();
+                            //
+                            Form_memo fm = new Form_memo(text, text1, text2,expression1,expression2);
+                            if (fm.ShowDialog() == DialogResult.OK)
+                            {
+                                string expression = fm.expression1 + "{0}" + fm.expression2;
+                                cQuery = " update C_dtable_m set memo='" + fm.mtext + "',title_name='" + fm.jtext + "',nos='" + fm.ntext + "',expression = '"+expression+"'";
+                                cQuery+= " where col_name='" + c_name + "'";
+                                cmd = new MySqlCommand(cQuery, DBConn);
+                                if (cmd.ExecuteNonQuery() != 0)
+                                {
+                                    MessageBox.Show("저장 하였습니다.");
+                                }
+                            }
+                            DBConn.Close();
+                        }
+                    }
+                }
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)  //refresh
+        {
+            select();
+        }
+
+        private void Form_204_SizeChanged(object sender, EventArgs e)
+        {
+            this.grid1.Size = new System.Drawing.Size(this.Size.Width - 41, this.Height - 117);
+        }
+
+    }
+}

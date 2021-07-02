@@ -1,0 +1,310 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+
+namespace Dukyou3
+{
+    public partial class Form_2112 : Form
+    {
+        SourceGridControl GridHandle = new SourceGridControl();
+        SourceGrid.Cells.Controllers.CustomEvents val_c1 = new SourceGrid.Cells.Controllers.CustomEvents();
+        string DB_TableName = "C_paper_size_code";
+        public Form_2112()
+        {
+            InitializeComponent();
+        }
+
+        private void Form_2112_Load(object sender, EventArgs e)
+        {
+            GridHandle.SourceGrideInit(grid1, Config.DB_con1);
+            Screen srn = Screen.PrimaryScreen;
+            int Xb = this.Width;   //좌,우
+            int Yb = this.Height;  //위,아래
+            if (this.MdiParent == null)
+                this.Location = new Point((srn.Bounds.Width - Xb) / 2, Config.tools_bottom);  //좌/우,위/아래
+            else
+                this.Location = new Point((srn.Bounds.Width - Xb) / 2, 1);  //좌/우,위/아래
+            //   
+            string[] item1 = new string[] { "국", "46" };
+            GridHandle.InputComboItem(item1);
+            string[] item2 = new string[] { "1", "2" };
+            GridHandle.InputComboItem(item2);
+            string[] item3 = new string[] { "횡목", "종목" };
+            GridHandle.InputComboItem(item3);
+            string[] item4 = new string[] { "매엽", "윤전", "디지털윤전" };
+            GridHandle.InputComboItem(item4);
+            //
+            button1_Click(null, null);
+        }
+
+        private void Grid_View(string cQuery)
+        {
+            cell_d cc = new cell_d();
+            // 
+            cEventHelper.RemoveAllEventHandlers(val_c1);
+            //  
+            grid1.Rows.Clear();
+            grid1.BorderStyle = BorderStyle.FixedSingle;
+            grid1.SelectionMode = SourceGrid.GridSelectionMode.Cell;
+            grid1.Selection.FocusStyle = grid1.Selection.FocusStyle | SourceGrid.FocusStyle.RemoveSelectionOnLeave;
+            grid1.Selection.EnableMultiSelection = false;
+            grid1.ColumnsCount = 17;
+            grid1.FixedRows = 1;
+            grid1.Rows.Insert(0);
+            grid1.Rows[0].Height = 30;
+            //
+            grid1[0, 0] = new MyHeader1("row_id");
+            grid1.Columns[0].Visible = false;
+
+            grid1[0, 1] = new MyHeader1("√");
+
+            grid1[0, 2] = new MyHeader1("sort_no");
+            grid1.Columns[2].Visible = false;
+
+            grid1[0, 3] = new MyHeader1("No");
+
+            grid1[0, 4] = new MyHeader1("인쇄구분");
+
+            grid1[0, 5] = new MyHeader1("판형");
+            grid1[0, 5].ColumnSpan = 2;
+            grid1[0, 7] = new MyHeader1("결");
+            grid1[0, 8] = new MyHeader1("앞수");
+            grid1[0, 9] = new MyHeader1("뒷수");
+            grid1[0, 10] = new MyHeader1("순위 적용율");
+            grid1[0, 11] = new MyHeader1("원종이 코드");
+            grid1[0, 12] = new MyHeader1("엇결종이 코드");
+            grid1[0, 13] = new MyHeader1("이름별칭");
+            grid1[0, 14] = new MyHeader1("사이즈별칭");
+            grid1[0, 15] = new MyHeader1("메모");
+            grid1[0, 16] = new MyHeader1("판걸이");
+            //
+            grid1.Columns[1].Width = 30;
+            grid1.Columns[3].Width = 50;
+            grid1.Columns[4].Width = 80;
+            grid1.Columns[5].Width = 50;
+            grid1.Columns[6].Width = 50;
+            grid1.Columns[7].Width = 60;
+            grid1.Columns[8].Width = 50;
+            grid1.Columns[9].Width = 50;
+            grid1.Columns[10].Width = 90;
+            grid1.Columns[11].Width = 90;
+            grid1.Columns[12].Width = 90;
+            grid1.Columns[13].Width = 100;
+            grid1.Columns[14].Width = 100;
+            grid1.Columns[15].Width = 300;
+            grid1.Columns[16].Width = 60;
+            //
+            MySqlConnection DBConn;
+
+            DBConn = new MySqlConnection(Config.DB_con1);
+            DBConn.Open();
+
+            var cmd = new MySqlCommand(cQuery, DBConn);
+            var myRead = cmd.ExecuteReader();
+
+            // 
+            int m = 1;
+            while (myRead.Read())
+            {
+                grid1.Rows.Insert(m);
+                grid1.Rows[m].Height = 22;
+                //
+                grid1[m, 0] = new SourceGrid.Cells.Cell(myRead["row_id"], typeof(string));
+                
+                grid1[m, 1] = new SourceGrid.Cells.CheckBox(null, false);
+
+                grid1[m, 2] = new SourceGrid.Cells.Cell(myRead["sort_no"], typeof(int));
+                grid1[m, 2].AddController(val_c1);
+
+                grid1[m, 3] = new SourceGrid.Cells.Cell(m.ToString(), typeof(string));
+                grid1[m, 3].View = cc.center_cell;
+                grid1[m, 3].Editor = cc.disable_cell;
+
+                grid1[m, 4] = new SourceGrid.Cells.Cell(myRead["prn_guboon"], typeof(string));
+                grid1[m, 4].View = cc.center_cell;
+                grid1[m, 4].Editor = GridHandle.CbBox[3];
+                grid1[m, 4].AddController(val_c1);
+
+                grid1[m, 5] = new SourceGrid.Cells.Cell(myRead["kook"], typeof(string));
+                grid1[m, 5].View = cc.center_cell;
+                grid1[m, 5].Editor = GridHandle.CbBox[0];
+                grid1[m, 5].AddController(val_c1);
+
+                grid1[m, 6] = new SourceGrid.Cells.Cell(myRead["jul"], typeof(string));
+                grid1[m, 6].View = cc.center_cell;
+                grid1[m, 6].Editor = GridHandle.CbBox[1];
+                grid1[m, 6].AddController(val_c1);  
+
+                grid1[m, 7] = new SourceGrid.Cells.Cell(myRead["grain"], typeof(string));
+                grid1[m, 7].View = cc.center_cell;
+                grid1[m, 7].Editor = GridHandle.CbBox[2];
+                grid1[m, 7].AddController(val_c1);  
+
+                grid1[m, 8] = new SourceGrid.Cells.Cell(myRead["width"], typeof(string));
+                grid1[m, 8].View = cc.center_cell;
+                grid1[m, 8].AddController(val_c1);  
+
+                grid1[m, 9] = new SourceGrid.Cells.Cell(myRead["height"], typeof(string));
+                grid1[m, 9].View = cc.center_cell;
+                grid1[m, 9].AddController(val_c1);  
+
+                grid1[m, 10] = new SourceGrid.Cells.Cell(myRead["ranking_per"], typeof(string));
+                grid1[m, 10].View = cc.center_cell;
+                grid1[m, 10].AddController(val_c1);  
+
+                grid1[m, 11] = new SourceGrid.Cells.Cell(myRead["base_paper_code"], typeof(string));
+                grid1[m, 11].View = cc.center_cell;
+                grid1[m, 11].AddController(val_c1);  
+
+                grid1[m, 12] = new SourceGrid.Cells.Cell(myRead["reverse_grain_code"], typeof(string));
+                grid1[m, 12].View = cc.center_cell;
+                grid1[m, 12].AddController(val_c1);  
+
+                grid1[m, 13] = new SourceGrid.Cells.Cell(myRead["paper_alias"], typeof(string));
+                grid1[m, 13].View = cc.center_cell;
+                grid1[m, 13].AddController(val_c1);  
+
+                grid1[m, 14] = new SourceGrid.Cells.Cell(myRead["size_alias"], typeof(string));
+                grid1[m, 14].View = cc.center_cell;
+                grid1[m, 14].AddController(val_c1);  
+
+                grid1[m, 15] = new SourceGrid.Cells.Cell(myRead["memo"], typeof(string));
+                grid1[m, 15].View = cc.left_cell;
+                grid1[m, 15].AddController(val_c1);
+
+                if(myRead["pan_id"].ToString() == "1")
+                    grid1[m, 16] = new SourceGrid.Cells.CheckBox(null, true);
+                else
+                    grid1[m, 16] = new SourceGrid.Cells.CheckBox(null, false);
+                grid1[m, 16].AddController(val_c1);
+
+                m++;
+            }
+            myRead.Close();
+            DBConn.Close();
+            //
+            val_c1.ValueChanged += new EventHandler(ValueChangedEvent1);
+            
+        }
+
+        private void bUp_Click(object sender, EventArgs e)
+        {
+            GridHandle.ChkMoveUp(1, 1, 0, 2, "sort_no", 3, DB_TableName);
+        }
+
+        private void bDown_Click(object sender, EventArgs e)
+        {
+            GridHandle.ChkMoveDown(1, 1, 0, 2, "sort_no", 3, DB_TableName);
+        }
+
+        private void bDel_Click(object sender, EventArgs e)
+        {
+            GridHandle.ChkDataDelete(DB_TableName, 1, 0, 1);
+        }
+
+        private void bAdd_Click(object sender, EventArgs e)
+        {
+            string cQuery = "insert into " + DB_TableName + " (sort_no,prn_guboon) values(";
+            cQuery += " (select if(max(sort_no)+1>0,max(sort_no)+1,1) from " + DB_TableName + "  as tmp )";
+            //
+            if (radioButton1.Checked == true)
+                cQuery += ",'매엽')";
+            else if (radioButton2.Checked == true)
+                cQuery += ",'윤전')";
+            else if (radioButton3.Checked == true)
+                cQuery += ",'디지털윤전')";
+            //
+            GridHandle.DataUpdate(cQuery);
+            button1_Click(null, null);
+            //
+            var position = new SourceGrid.Position(grid1.Rows.Count - 1, 1);
+            grid1.Selection.Focus(position, true);
+        }
+
+        private void ValueChangedEvent1(object sender, EventArgs e)  //Grid1에서 볼륨첸지
+        {
+            int cpos = grid1.Selection.ActivePosition.Column;
+            int rpos = grid1.Selection.ActivePosition.Row;
+
+            if (rpos < 0)
+                return;
+            //  
+            cEventHelper.RemoveAllEventHandlers(val_c1);
+            string cQuery = "";
+            string row_no = grid1[rpos, 0].ToString().Trim();
+            string dat = grid1[rpos, cpos].ToString().Trim();
+            //
+            //
+            if (cpos.Equals(4))       //
+            {
+                if (dat != "")
+                    cQuery = " update " + DB_TableName + " set prn_guboon='" + dat + "' where row_id='" + row_no + "'";
+            }
+            else if (cpos.Equals(5))       //
+            {
+                if (dat != "")
+                    cQuery = " update " + DB_TableName + " set kook='" + dat + "' where row_id='" + row_no + "'";
+            }
+            else if (cpos.Equals(6))  //
+            {
+                if (dat != "")
+                    cQuery = " update " + DB_TableName + " set jul='" + dat + "' where row_id='" + row_no + "'";
+            }
+            else if (cpos.Equals(7))  //
+                cQuery = " update " + DB_TableName + " set grain='" + dat + "' where row_id='" + row_no + "'";
+            else if (cpos.Equals(8))  //
+                cQuery = " update " + DB_TableName + " set width='" + dat + "' where row_id='" + row_no + "'";
+            else if (cpos.Equals(9))  //
+                cQuery = " update " + DB_TableName + " set height='" + dat + "' where row_id='" + row_no + "'";
+            else if (cpos.Equals(10))  //
+                cQuery = " update " + DB_TableName + " set ranking_per='" + dat + "' where row_id='" + row_no + "'";
+            else if (cpos.Equals(11))  //
+                cQuery = " update " + DB_TableName + " set base_paper_code='" + dat + "' where row_id='" + row_no + "'";
+            else if (cpos.Equals(12))  //
+                cQuery = " update " + DB_TableName + " set reverse_grain_code='" + dat + "' where row_id='" + row_no + "'";
+            else if (cpos.Equals(13))  //
+                cQuery = " update " + DB_TableName + " set paper_alias='" + dat + "' where row_id='" + row_no + "'";
+            else if (cpos.Equals(14))  //
+                cQuery = " update " + DB_TableName + " set size_alias='" + dat + "' where row_id='" + row_no + "'";
+            else if (cpos.Equals(15))  //
+                cQuery = " update " + DB_TableName + " set memo='" + dat + "' where row_id='" + row_no + "'";
+            else if (cpos.Equals(16))  //
+            {
+                if (dat.ToString() == "True")
+                    cQuery = " update " + DB_TableName + " set pan_id='1' where row_id='" + row_no + "'";
+                else
+                    cQuery = " update " + DB_TableName + " set pan_id='0' where row_id='" + row_no + "'";
+            }
+            //
+            if (!cQuery.Equals(""))
+            {
+                if (GridHandle.DataUpdate(cQuery) == 1)
+                {
+                    MessageBox.Show("서버에라 발생으로 수정되지 않았습니다.");
+                }
+            }
+            val_c1.ValueChanged += new EventHandler(ValueChangedEvent1);
+        }
+
+        private void button1_Click(object sender, EventArgs e)  //검색
+        {
+            string cQuery = "select * from " + DB_TableName;
+            if(radioButton1.Checked == true)
+                cQuery += " where prn_guboon='매엽' order by sort_no";
+            else if (radioButton2.Checked == true)
+                cQuery += " where prn_guboon='윤전' order by sort_no";
+            else if (radioButton3.Checked == true)
+                cQuery += " where prn_guboon='디지털윤전' order by sort_no";
+            else
+                cQuery += " order by sort_no";
+            //
+            Grid_View(cQuery);
+        }
+    }
+}

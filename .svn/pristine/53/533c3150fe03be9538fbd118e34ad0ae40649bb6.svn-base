@@ -1,0 +1,1323 @@
+﻿namespace Dukyou3
+{
+    partial class Form_501
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_501));
+            this.bAdd = new System.Windows.Forms.Button();
+            this.bCopy = new System.Windows.Forms.Button();
+            this.bDelete = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cbS_bunryu = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbS_pgroup = new System.Windows.Forms.ComboBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbS_weight2 = new System.Windows.Forms.ComboBox();
+            this.cbS_weight1 = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.cbS_pname = new System.Windows.Forms.ComboBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.tbS_pcolor = new System.Windows.Forms.TextBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.cbS_pmake = new System.Windows.Forms.ComboBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.tbS_sgroup = new System.Windows.Forms.TextBox();
+            this.bS_sgroup = new System.Windows.Forms.Button();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.cbS_sock = new System.Windows.Forms.ComboBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.cbS_sunsu = new System.Windows.Forms.ComboBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.tbS_puse = new System.Windows.Forms.TextBox();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.rbPgroup = new System.Windows.Forms.RadioButton();
+            this.rbPmake = new System.Windows.Forms.RadioButton();
+            this.rbBunryu = new System.Windows.Forms.RadioButton();
+            this.rbPname = new System.Windows.Forms.RadioButton();
+            this.bClear = new System.Windows.Forms.Button();
+            this.bSearch = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.tbThick = new System.Windows.Forms.TextBox();
+            this.tbTonsu = new System.Windows.Forms.TextBox();
+            this.tbNoticePrice = new System.Windows.Forms.TextBox();
+            this.tbWeight = new System.Windows.Forms.TextBox();
+            this.cbSunsu = new System.Windows.Forms.ComboBox();
+            this.cbSock = new System.Windows.Forms.ComboBox();
+            this.cbPmake = new System.Windows.Forms.ComboBox();
+            this.cbPgroup = new System.Windows.Forms.ComboBox();
+            this.cbBunryu = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.bMClear = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.bPackMody = new System.Windows.Forms.Button();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.tbYgroup = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.bJiup = new System.Windows.Forms.Button();
+            this.tbJiup = new System.Windows.Forms.TextBox();
+            this.bPuse = new System.Windows.Forms.Button();
+            this.tbPuse = new System.Windows.Forms.TextBox();
+            this.bSgroup = new System.Windows.Forms.Button();
+            this.tbSgroup = new System.Windows.Forms.TextBox();
+            this.bPackRemove = new System.Windows.Forms.Button();
+            this.bPackAdd = new System.Windows.Forms.Button();
+            this.bPackClear = new System.Windows.Forms.Button();
+            this.bPackTrade = new System.Windows.Forms.Button();
+            this.bSearchManage = new System.Windows.Forms.Button();
+            this.bManage = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.dataGrid1 = new SourceGrid.DataGrid();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.watGroupBox2 = new Dukyou.WATGroupBox();
+            this.bShoping_chk_sync = new System.Windows.Forms.Button();
+            this.bShoping_all_sync = new System.Windows.Forms.Button();
+            this.bShoping_add = new System.Windows.Forms.Button();
+            this.watGroupBox3 = new Dukyou.WATGroupBox();
+            this.bSang_add = new System.Windows.Forms.Button();
+            this.watGroupBox1 = new Dukyou.WATGroupBox();
+            this.bMacro_chk_sync = new System.Windows.Forms.Button();
+            this.bMacro_all_sync = new System.Windows.Forms.Button();
+            this.bMacro_add = new System.Windows.Forms.Button();
+            this.groupBox3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.groupBox10.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            this.groupBox13.SuspendLayout();
+            this.groupBox14.SuspendLayout();
+            this.watGroupBox2.SuspendLayout();
+            this.watGroupBox3.SuspendLayout();
+            this.watGroupBox1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // bAdd
+            // 
+            this.bAdd.Location = new System.Drawing.Point(12, 186);
+            this.bAdd.Name = "bAdd";
+            this.bAdd.Size = new System.Drawing.Size(50, 23);
+            this.bAdd.TabIndex = 15;
+            this.bAdd.Text = "추가";
+            this.bAdd.UseVisualStyleBackColor = true;
+            this.bAdd.Click += new System.EventHandler(this.bAdd_Click);
+            // 
+            // bCopy
+            // 
+            this.bCopy.Location = new System.Drawing.Point(70, 186);
+            this.bCopy.Name = "bCopy";
+            this.bCopy.Size = new System.Drawing.Size(50, 23);
+            this.bCopy.TabIndex = 16;
+            this.bCopy.Text = "복사";
+            this.bCopy.UseVisualStyleBackColor = true;
+            this.bCopy.Click += new System.EventHandler(this.bCopy_Click);
+            // 
+            // bDelete
+            // 
+            this.bDelete.Location = new System.Drawing.Point(128, 186);
+            this.bDelete.Name = "bDelete";
+            this.bDelete.Size = new System.Drawing.Size(50, 23);
+            this.bDelete.TabIndex = 17;
+            this.bDelete.Text = "삭제";
+            this.bDelete.UseVisualStyleBackColor = true;
+            this.bDelete.Click += new System.EventHandler(this.bDelete_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox3.Controls.Add(this.cbS_bunryu);
+            this.groupBox3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.groupBox3.Location = new System.Drawing.Point(12, 6);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(85, 49);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "%분류";
+            // 
+            // cbS_bunryu
+            // 
+            this.cbS_bunryu.FormattingEnabled = true;
+            this.cbS_bunryu.Location = new System.Drawing.Point(11, 20);
+            this.cbS_bunryu.Name = "cbS_bunryu";
+            this.cbS_bunryu.Size = new System.Drawing.Size(64, 20);
+            this.cbS_bunryu.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox1.Controls.Add(this.cbS_pgroup);
+            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.groupBox1.Location = new System.Drawing.Point(105, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(103, 49);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "종이그룹";
+            // 
+            // cbS_pgroup
+            // 
+            this.cbS_pgroup.FormattingEnabled = true;
+            this.cbS_pgroup.Location = new System.Drawing.Point(6, 20);
+            this.cbS_pgroup.Name = "cbS_pgroup";
+            this.cbS_pgroup.Size = new System.Drawing.Size(87, 20);
+            this.cbS_pgroup.TabIndex = 0;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox2.Controls.Add(this.cbS_weight2);
+            this.groupBox2.Controls.Add(this.cbS_weight1);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.groupBox2.Location = new System.Drawing.Point(217, 6);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(125, 49);
+            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "무게";
+            // 
+            // cbS_weight2
+            // 
+            this.cbS_weight2.FormattingEnabled = true;
+            this.cbS_weight2.Items.AddRange(new object[] {
+            "70",
+            "80",
+            "90",
+            "100",
+            "120",
+            "150",
+            "180",
+            "200",
+            "220",
+            "250",
+            "260",
+            "300",
+            "350",
+            "400",
+            "450",
+            "500",
+            "550"});
+            this.cbS_weight2.Location = new System.Drawing.Point(68, 20);
+            this.cbS_weight2.Name = "cbS_weight2";
+            this.cbS_weight2.Size = new System.Drawing.Size(50, 20);
+            this.cbS_weight2.TabIndex = 1;
+            // 
+            // cbS_weight1
+            // 
+            this.cbS_weight1.FormattingEnabled = true;
+            this.cbS_weight1.Items.AddRange(new object[] {
+            "70",
+            "80",
+            "90",
+            "100",
+            "120",
+            "150",
+            "180",
+            "200",
+            "220",
+            "250",
+            "260",
+            "300",
+            "350",
+            "400",
+            "450",
+            "500",
+            "550"});
+            this.cbS_weight1.Location = new System.Drawing.Point(4, 20);
+            this.cbS_weight1.Name = "cbS_weight1";
+            this.cbS_weight1.Size = new System.Drawing.Size(50, 20);
+            this.cbS_weight1.TabIndex = 0;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(54, 26);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(14, 12);
+            this.label12.TabIndex = 2;
+            this.label12.Text = "~";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox4.Controls.Add(this.cbS_pname);
+            this.groupBox4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.groupBox4.Location = new System.Drawing.Point(351, 6);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(161, 49);
+            this.groupBox4.TabIndex = 3;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "종이명";
+            // 
+            // cbS_pname
+            // 
+            this.cbS_pname.FormattingEnabled = true;
+            this.cbS_pname.Location = new System.Drawing.Point(8, 21);
+            this.cbS_pname.Name = "cbS_pname";
+            this.cbS_pname.Size = new System.Drawing.Size(147, 20);
+            this.cbS_pname.TabIndex = 373;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox5.Controls.Add(this.tbS_pcolor);
+            this.groupBox5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.groupBox5.Location = new System.Drawing.Point(520, 6);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(128, 49);
+            this.groupBox5.TabIndex = 4;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "색상";
+            // 
+            // tbS_pcolor
+            // 
+            this.tbS_pcolor.Location = new System.Drawing.Point(6, 20);
+            this.tbS_pcolor.Name = "tbS_pcolor";
+            this.tbS_pcolor.Size = new System.Drawing.Size(116, 21);
+            this.tbS_pcolor.TabIndex = 373;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox6.Controls.Add(this.cbS_pmake);
+            this.groupBox6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.groupBox6.Location = new System.Drawing.Point(657, 6);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(128, 49);
+            this.groupBox6.TabIndex = 5;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "제지회사";
+            // 
+            // cbS_pmake
+            // 
+            this.cbS_pmake.FormattingEnabled = true;
+            this.cbS_pmake.Location = new System.Drawing.Point(6, 21);
+            this.cbS_pmake.Name = "cbS_pmake";
+            this.cbS_pmake.Size = new System.Drawing.Size(116, 20);
+            this.cbS_pmake.TabIndex = 372;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox7.Controls.Add(this.tbS_sgroup);
+            this.groupBox7.Controls.Add(this.bS_sgroup);
+            this.groupBox7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.groupBox7.Location = new System.Drawing.Point(13, 67);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(162, 49);
+            this.groupBox7.TabIndex = 6;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "매엽 사이즈그룹";
+            // 
+            // tbS_sgroup
+            // 
+            this.tbS_sgroup.BackColor = System.Drawing.Color.White;
+            this.tbS_sgroup.ForeColor = System.Drawing.Color.Black;
+            this.tbS_sgroup.Location = new System.Drawing.Point(10, 20);
+            this.tbS_sgroup.Name = "tbS_sgroup";
+            this.tbS_sgroup.ReadOnly = true;
+            this.tbS_sgroup.Size = new System.Drawing.Size(123, 21);
+            this.tbS_sgroup.TabIndex = 372;
+            // 
+            // bS_sgroup
+            // 
+            this.bS_sgroup.Location = new System.Drawing.Point(132, 20);
+            this.bS_sgroup.Name = "bS_sgroup";
+            this.bS_sgroup.Size = new System.Drawing.Size(23, 22);
+            this.bS_sgroup.TabIndex = 372;
+            this.bS_sgroup.Text = "▼";
+            this.bS_sgroup.UseVisualStyleBackColor = true;
+            this.bS_sgroup.Click += new System.EventHandler(this.bS_sgroup_Click);
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox8.Controls.Add(this.cbS_sock);
+            this.groupBox8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.groupBox8.Location = new System.Drawing.Point(533, 67);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(79, 49);
+            this.groupBox8.TabIndex = 7;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "속(장)";
+            // 
+            // cbS_sock
+            // 
+            this.cbS_sock.FormattingEnabled = true;
+            this.cbS_sock.Items.AddRange(new object[] {
+            "125",
+            "250",
+            "500"});
+            this.cbS_sock.Location = new System.Drawing.Point(6, 22);
+            this.cbS_sock.Name = "cbS_sock";
+            this.cbS_sock.Size = new System.Drawing.Size(67, 20);
+            this.cbS_sock.TabIndex = 372;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox9.Controls.Add(this.cbS_sunsu);
+            this.groupBox9.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.groupBox9.Location = new System.Drawing.Point(625, 67);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(79, 49);
+            this.groupBox9.TabIndex = 8;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "선수";
+            // 
+            // cbS_sunsu
+            // 
+            this.cbS_sunsu.FormattingEnabled = true;
+            this.cbS_sunsu.Items.AddRange(new object[] {
+            "110",
+            "133",
+            "175"});
+            this.cbS_sunsu.Location = new System.Drawing.Point(11, 21);
+            this.cbS_sunsu.Name = "cbS_sunsu";
+            this.cbS_sunsu.Size = new System.Drawing.Size(60, 20);
+            this.cbS_sunsu.TabIndex = 372;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox10.Controls.Add(this.button1);
+            this.groupBox10.Controls.Add(this.tbS_puse);
+            this.groupBox10.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.groupBox10.Location = new System.Drawing.Point(359, 67);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(163, 49);
+            this.groupBox10.TabIndex = 9;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "용도";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(133, 22);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(23, 22);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "▼";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // tbS_puse
+            // 
+            this.tbS_puse.BackColor = System.Drawing.Color.White;
+            this.tbS_puse.ForeColor = System.Drawing.Color.Black;
+            this.tbS_puse.Location = new System.Drawing.Point(6, 22);
+            this.tbS_puse.Name = "tbS_puse";
+            this.tbS_puse.ReadOnly = true;
+            this.tbS_puse.Size = new System.Drawing.Size(130, 21);
+            this.tbS_puse.TabIndex = 0;
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox11.Controls.Add(this.rbPgroup);
+            this.groupBox11.Controls.Add(this.rbPmake);
+            this.groupBox11.Controls.Add(this.rbBunryu);
+            this.groupBox11.Controls.Add(this.rbPname);
+            this.groupBox11.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.groupBox11.Location = new System.Drawing.Point(12, 125);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(328, 49);
+            this.groupBox11.TabIndex = 10;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "정렬방식";
+            // 
+            // rbPgroup
+            // 
+            this.rbPgroup.AutoSize = true;
+            this.rbPgroup.Location = new System.Drawing.Point(162, 20);
+            this.rbPgroup.Name = "rbPgroup";
+            this.rbPgroup.Size = new System.Drawing.Size(71, 16);
+            this.rbPgroup.TabIndex = 2;
+            this.rbPgroup.TabStop = true;
+            this.rbPgroup.Text = "종이그룹";
+            this.rbPgroup.UseVisualStyleBackColor = true;
+            // 
+            // rbPmake
+            // 
+            this.rbPmake.AutoSize = true;
+            this.rbPmake.Location = new System.Drawing.Point(253, 20);
+            this.rbPmake.Name = "rbPmake";
+            this.rbPmake.Size = new System.Drawing.Size(71, 16);
+            this.rbPmake.TabIndex = 3;
+            this.rbPmake.TabStop = true;
+            this.rbPmake.Text = "제지회사";
+            this.rbPmake.UseVisualStyleBackColor = true;
+            // 
+            // rbBunryu
+            // 
+            this.rbBunryu.AutoSize = true;
+            this.rbBunryu.Location = new System.Drawing.Point(85, 20);
+            this.rbBunryu.Name = "rbBunryu";
+            this.rbBunryu.Size = new System.Drawing.Size(57, 16);
+            this.rbBunryu.TabIndex = 1;
+            this.rbBunryu.TabStop = true;
+            this.rbBunryu.Text = "%분류";
+            this.rbBunryu.UseVisualStyleBackColor = true;
+            // 
+            // rbPname
+            // 
+            this.rbPname.AutoSize = true;
+            this.rbPname.Checked = true;
+            this.rbPname.Location = new System.Drawing.Point(6, 20);
+            this.rbPname.Name = "rbPname";
+            this.rbPname.Size = new System.Drawing.Size(59, 16);
+            this.rbPname.TabIndex = 0;
+            this.rbPname.TabStop = true;
+            this.rbPname.Text = "종이명";
+            this.rbPname.UseVisualStyleBackColor = true;
+            // 
+            // bClear
+            // 
+            this.bClear.Location = new System.Drawing.Point(716, 118);
+            this.bClear.Name = "bClear";
+            this.bClear.Size = new System.Drawing.Size(70, 23);
+            this.bClear.TabIndex = 12;
+            this.bClear.Text = "Clear";
+            this.bClear.UseVisualStyleBackColor = true;
+            this.bClear.Click += new System.EventHandler(this.bClear_Click);
+            // 
+            // bSearch
+            // 
+            this.bSearch.Location = new System.Drawing.Point(716, 67);
+            this.bSearch.Name = "bSearch";
+            this.bSearch.Size = new System.Drawing.Size(70, 45);
+            this.bSearch.TabIndex = 11;
+            this.bSearch.Text = "검색";
+            this.bSearch.UseVisualStyleBackColor = true;
+            this.bSearch.Click += new System.EventHandler(this.bSearch_Click);
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.DodgerBlue;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label1.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Location = new System.Drawing.Point(797, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(3, 161);
+            this.label1.TabIndex = 371;
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox12.Controls.Add(this.tbThick);
+            this.groupBox12.Controls.Add(this.tbTonsu);
+            this.groupBox12.Controls.Add(this.tbNoticePrice);
+            this.groupBox12.Controls.Add(this.tbWeight);
+            this.groupBox12.Controls.Add(this.cbSunsu);
+            this.groupBox12.Controls.Add(this.cbSock);
+            this.groupBox12.Controls.Add(this.cbPmake);
+            this.groupBox12.Controls.Add(this.cbPgroup);
+            this.groupBox12.Controls.Add(this.cbBunryu);
+            this.groupBox12.Controls.Add(this.label8);
+            this.groupBox12.Controls.Add(this.label7);
+            this.groupBox12.Controls.Add(this.label6);
+            this.groupBox12.Controls.Add(this.label14);
+            this.groupBox12.Controls.Add(this.label13);
+            this.groupBox12.Controls.Add(this.label5);
+            this.groupBox12.Controls.Add(this.bMClear);
+            this.groupBox12.Controls.Add(this.label4);
+            this.groupBox12.Controls.Add(this.label3);
+            this.groupBox12.Controls.Add(this.label2);
+            this.groupBox12.Controls.Add(this.bPackMody);
+            this.groupBox12.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.groupBox12.Location = new System.Drawing.Point(807, 12);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(735, 67);
+            this.groupBox12.TabIndex = 13;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "일괄수정";
+            // 
+            // tbThick
+            // 
+            this.tbThick.Location = new System.Drawing.Point(307, 33);
+            this.tbThick.Name = "tbThick";
+            this.tbThick.Size = new System.Drawing.Size(48, 21);
+            this.tbThick.TabIndex = 4;
+            // 
+            // tbTonsu
+            // 
+            this.tbTonsu.Location = new System.Drawing.Point(546, 33);
+            this.tbTonsu.Name = "tbTonsu";
+            this.tbTonsu.Size = new System.Drawing.Size(80, 21);
+            this.tbTonsu.TabIndex = 7;
+            // 
+            // tbNoticePrice
+            // 
+            this.tbNoticePrice.Location = new System.Drawing.Point(467, 33);
+            this.tbNoticePrice.Name = "tbNoticePrice";
+            this.tbNoticePrice.Size = new System.Drawing.Size(80, 21);
+            this.tbNoticePrice.TabIndex = 7;
+            // 
+            // tbWeight
+            // 
+            this.tbWeight.Location = new System.Drawing.Point(260, 33);
+            this.tbWeight.Name = "tbWeight";
+            this.tbWeight.Size = new System.Drawing.Size(48, 21);
+            this.tbWeight.TabIndex = 3;
+            // 
+            // cbSunsu
+            // 
+            this.cbSunsu.FormattingEnabled = true;
+            this.cbSunsu.Items.AddRange(new object[] {
+            "110",
+            "133",
+            "175"});
+            this.cbSunsu.Location = new System.Drawing.Point(408, 33);
+            this.cbSunsu.Name = "cbSunsu";
+            this.cbSunsu.Size = new System.Drawing.Size(60, 20);
+            this.cbSunsu.TabIndex = 6;
+            // 
+            // cbSock
+            // 
+            this.cbSock.FormattingEnabled = true;
+            this.cbSock.Items.AddRange(new object[] {
+            "125",
+            "250",
+            "500"});
+            this.cbSock.Location = new System.Drawing.Point(354, 33);
+            this.cbSock.Name = "cbSock";
+            this.cbSock.Size = new System.Drawing.Size(55, 20);
+            this.cbSock.TabIndex = 5;
+            // 
+            // cbPmake
+            // 
+            this.cbPmake.FormattingEnabled = true;
+            this.cbPmake.Location = new System.Drawing.Point(168, 33);
+            this.cbPmake.Name = "cbPmake";
+            this.cbPmake.Size = new System.Drawing.Size(93, 20);
+            this.cbPmake.TabIndex = 2;
+            // 
+            // cbPgroup
+            // 
+            this.cbPgroup.FormattingEnabled = true;
+            this.cbPgroup.Location = new System.Drawing.Point(90, 33);
+            this.cbPgroup.Name = "cbPgroup";
+            this.cbPgroup.Size = new System.Drawing.Size(79, 20);
+            this.cbPgroup.TabIndex = 1;
+            // 
+            // cbBunryu
+            // 
+            this.cbBunryu.FormattingEnabled = true;
+            this.cbBunryu.ItemHeight = 12;
+            this.cbBunryu.Location = new System.Drawing.Point(15, 33);
+            this.cbBunryu.Name = "cbBunryu";
+            this.cbBunryu.Size = new System.Drawing.Size(76, 20);
+            this.cbBunryu.TabIndex = 0;
+            // 
+            // label8
+            // 
+            this.label8.BackColor = System.Drawing.SystemColors.Control;
+            this.label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label8.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label8.Location = new System.Drawing.Point(408, 14);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(60, 19);
+            this.label8.TabIndex = 371;
+            this.label8.Text = "선수";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label7
+            // 
+            this.label7.BackColor = System.Drawing.SystemColors.Control;
+            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label7.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label7.Location = new System.Drawing.Point(354, 14);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(55, 19);
+            this.label7.TabIndex = 371;
+            this.label7.Text = "속(장)";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label6
+            // 
+            this.label6.BackColor = System.Drawing.SystemColors.Control;
+            this.label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label6.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label6.Location = new System.Drawing.Point(307, 14);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(48, 19);
+            this.label6.TabIndex = 371;
+            this.label6.Text = "두께";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label14
+            // 
+            this.label14.BackColor = System.Drawing.SystemColors.Control;
+            this.label14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label14.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label14.Location = new System.Drawing.Point(546, 14);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(80, 19);
+            this.label14.TabIndex = 371;
+            this.label14.Text = "톤수";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label13
+            // 
+            this.label13.BackColor = System.Drawing.SystemColors.Control;
+            this.label13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label13.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label13.Location = new System.Drawing.Point(467, 14);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(80, 19);
+            this.label13.TabIndex = 371;
+            this.label13.Text = "공시단가";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label5
+            // 
+            this.label5.BackColor = System.Drawing.SystemColors.Control;
+            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label5.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label5.Location = new System.Drawing.Point(260, 14);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(48, 19);
+            this.label5.TabIndex = 371;
+            this.label5.Text = "무게";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // bMClear
+            // 
+            this.bMClear.Location = new System.Drawing.Point(656, 38);
+            this.bMClear.Name = "bMClear";
+            this.bMClear.Size = new System.Drawing.Size(62, 22);
+            this.bMClear.TabIndex = 9;
+            this.bMClear.Text = "Clear";
+            this.bMClear.UseVisualStyleBackColor = true;
+            this.bMClear.Click += new System.EventHandler(this.bMClear_Click);
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.SystemColors.Control;
+            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label4.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label4.Location = new System.Drawing.Point(168, 14);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(93, 19);
+            this.label4.TabIndex = 371;
+            this.label4.Text = "제지회사";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.SystemColors.Control;
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label3.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label3.Location = new System.Drawing.Point(90, 14);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(79, 19);
+            this.label3.TabIndex = 371;
+            this.label3.Text = "종이그룹";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.SystemColors.Control;
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label2.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label2.Location = new System.Drawing.Point(15, 14);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(76, 19);
+            this.label2.TabIndex = 371;
+            this.label2.Text = "%분류";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // bPackMody
+            // 
+            this.bPackMody.Location = new System.Drawing.Point(656, 14);
+            this.bPackMody.Name = "bPackMody";
+            this.bPackMody.Size = new System.Drawing.Size(62, 24);
+            this.bPackMody.TabIndex = 8;
+            this.bPackMody.Text = "수정";
+            this.bPackMody.UseVisualStyleBackColor = true;
+            this.bPackMody.Click += new System.EventHandler(this.bPackMody_Click);
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox13.Controls.Add(this.label15);
+            this.groupBox13.Controls.Add(this.button4);
+            this.groupBox13.Controls.Add(this.tbYgroup);
+            this.groupBox13.Controls.Add(this.label11);
+            this.groupBox13.Controls.Add(this.label10);
+            this.groupBox13.Controls.Add(this.label9);
+            this.groupBox13.Controls.Add(this.bJiup);
+            this.groupBox13.Controls.Add(this.tbJiup);
+            this.groupBox13.Controls.Add(this.bPuse);
+            this.groupBox13.Controls.Add(this.tbPuse);
+            this.groupBox13.Controls.Add(this.bSgroup);
+            this.groupBox13.Controls.Add(this.tbSgroup);
+            this.groupBox13.Controls.Add(this.bPackRemove);
+            this.groupBox13.Controls.Add(this.bPackAdd);
+            this.groupBox13.Controls.Add(this.bPackClear);
+            this.groupBox13.Controls.Add(this.bPackTrade);
+            this.groupBox13.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.groupBox13.Location = new System.Drawing.Point(807, 84);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(735, 72);
+            this.groupBox13.TabIndex = 14;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "교환/추가/제거";
+            // 
+            // label15
+            // 
+            this.label15.BackColor = System.Drawing.SystemColors.Control;
+            this.label15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label15.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label15.Location = new System.Drawing.Point(161, 15);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(143, 19);
+            this.label15.TabIndex = 374;
+            this.label15.Text = "윤전 사이즈그룹";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(282, 34);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(23, 22);
+            this.button4.TabIndex = 373;
+            this.button4.Text = "▼";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // tbYgroup
+            // 
+            this.tbYgroup.BackColor = System.Drawing.Color.White;
+            this.tbYgroup.ForeColor = System.Drawing.Color.Black;
+            this.tbYgroup.Location = new System.Drawing.Point(161, 35);
+            this.tbYgroup.Name = "tbYgroup";
+            this.tbYgroup.ReadOnly = true;
+            this.tbYgroup.Size = new System.Drawing.Size(121, 21);
+            this.tbYgroup.TabIndex = 375;
+            // 
+            // label11
+            // 
+            this.label11.BackColor = System.Drawing.SystemColors.Control;
+            this.label11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label11.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label11.Location = new System.Drawing.Point(459, 15);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(151, 19);
+            this.label11.TabIndex = 371;
+            this.label11.Text = "유통업체코드";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label10
+            // 
+            this.label10.BackColor = System.Drawing.SystemColors.Control;
+            this.label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label10.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label10.Location = new System.Drawing.Point(306, 15);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(151, 19);
+            this.label10.TabIndex = 371;
+            this.label10.Text = "용도";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label9
+            // 
+            this.label9.BackColor = System.Drawing.SystemColors.Control;
+            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label9.Font = new System.Drawing.Font("굴림", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label9.Location = new System.Drawing.Point(15, 15);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(144, 19);
+            this.label9.TabIndex = 371;
+            this.label9.Text = "매엽 사이즈그룹";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // bJiup
+            // 
+            this.bJiup.Location = new System.Drawing.Point(588, 34);
+            this.bJiup.Name = "bJiup";
+            this.bJiup.Size = new System.Drawing.Size(23, 22);
+            this.bJiup.TabIndex = 2;
+            this.bJiup.Text = "▼";
+            this.bJiup.UseVisualStyleBackColor = true;
+            this.bJiup.Click += new System.EventHandler(this.bJiup_Click);
+            // 
+            // tbJiup
+            // 
+            this.tbJiup.BackColor = System.Drawing.Color.White;
+            this.tbJiup.ForeColor = System.Drawing.Color.Black;
+            this.tbJiup.Location = new System.Drawing.Point(459, 35);
+            this.tbJiup.Name = "tbJiup";
+            this.tbJiup.ReadOnly = true;
+            this.tbJiup.Size = new System.Drawing.Size(129, 21);
+            this.tbJiup.TabIndex = 372;
+            // 
+            // bPuse
+            // 
+            this.bPuse.Location = new System.Drawing.Point(435, 34);
+            this.bPuse.Name = "bPuse";
+            this.bPuse.Size = new System.Drawing.Size(23, 22);
+            this.bPuse.TabIndex = 1;
+            this.bPuse.Text = "▼";
+            this.bPuse.UseVisualStyleBackColor = true;
+            this.bPuse.Click += new System.EventHandler(this.bPuse_Click);
+            // 
+            // tbPuse
+            // 
+            this.tbPuse.BackColor = System.Drawing.Color.White;
+            this.tbPuse.ForeColor = System.Drawing.Color.Black;
+            this.tbPuse.Location = new System.Drawing.Point(306, 35);
+            this.tbPuse.Name = "tbPuse";
+            this.tbPuse.ReadOnly = true;
+            this.tbPuse.Size = new System.Drawing.Size(129, 21);
+            this.tbPuse.TabIndex = 372;
+            // 
+            // bSgroup
+            // 
+            this.bSgroup.Location = new System.Drawing.Point(137, 34);
+            this.bSgroup.Name = "bSgroup";
+            this.bSgroup.Size = new System.Drawing.Size(23, 22);
+            this.bSgroup.TabIndex = 0;
+            this.bSgroup.Text = "▼";
+            this.bSgroup.UseVisualStyleBackColor = true;
+            this.bSgroup.Click += new System.EventHandler(this.bSgroup_Click);
+            // 
+            // tbSgroup
+            // 
+            this.tbSgroup.BackColor = System.Drawing.Color.White;
+            this.tbSgroup.ForeColor = System.Drawing.Color.Black;
+            this.tbSgroup.Location = new System.Drawing.Point(15, 35);
+            this.tbSgroup.Name = "tbSgroup";
+            this.tbSgroup.ReadOnly = true;
+            this.tbSgroup.Size = new System.Drawing.Size(122, 21);
+            this.tbSgroup.TabIndex = 372;
+            // 
+            // bPackRemove
+            // 
+            this.bPackRemove.Location = new System.Drawing.Point(676, 13);
+            this.bPackRemove.Name = "bPackRemove";
+            this.bPackRemove.Size = new System.Drawing.Size(47, 23);
+            this.bPackRemove.TabIndex = 5;
+            this.bPackRemove.Text = "제거";
+            this.bPackRemove.UseVisualStyleBackColor = true;
+            this.bPackRemove.Click += new System.EventHandler(this.bPackRemove_Click);
+            // 
+            // bPackAdd
+            // 
+            this.bPackAdd.Location = new System.Drawing.Point(676, 41);
+            this.bPackAdd.Name = "bPackAdd";
+            this.bPackAdd.Size = new System.Drawing.Size(47, 23);
+            this.bPackAdd.TabIndex = 4;
+            this.bPackAdd.Text = "추가";
+            this.bPackAdd.UseVisualStyleBackColor = true;
+            this.bPackAdd.Click += new System.EventHandler(this.bPackAdd_Click);
+            // 
+            // bPackClear
+            // 
+            this.bPackClear.Location = new System.Drawing.Point(623, 13);
+            this.bPackClear.Name = "bPackClear";
+            this.bPackClear.Size = new System.Drawing.Size(47, 23);
+            this.bPackClear.TabIndex = 6;
+            this.bPackClear.Text = "Clear";
+            this.bPackClear.UseVisualStyleBackColor = true;
+            this.bPackClear.Click += new System.EventHandler(this.bPackClear_Click);
+            // 
+            // bPackTrade
+            // 
+            this.bPackTrade.Location = new System.Drawing.Point(623, 41);
+            this.bPackTrade.Name = "bPackTrade";
+            this.bPackTrade.Size = new System.Drawing.Size(47, 23);
+            this.bPackTrade.TabIndex = 3;
+            this.bPackTrade.Text = "교환";
+            this.bPackTrade.UseVisualStyleBackColor = true;
+            this.bPackTrade.Click += new System.EventHandler(this.bPackTrade_Click);
+            // 
+            // bSearchManage
+            // 
+            this.bSearchManage.Location = new System.Drawing.Point(201, 186);
+            this.bSearchManage.Name = "bSearchManage";
+            this.bSearchManage.Size = new System.Drawing.Size(92, 23);
+            this.bSearchManage.TabIndex = 18;
+            this.bSearchManage.Text = "검색순위관리";
+            this.bSearchManage.UseVisualStyleBackColor = true;
+            this.bSearchManage.Click += new System.EventHandler(this.bSearchManage_Click);
+            // 
+            // bManage
+            // 
+            this.bManage.Location = new System.Drawing.Point(302, 186);
+            this.bManage.Name = "bManage";
+            this.bManage.Size = new System.Drawing.Size(98, 22);
+            this.bManage.TabIndex = 1;
+            this.bManage.Text = "관리 업체 선택";
+            this.bManage.UseVisualStyleBackColor = true;
+            this.bManage.Click += new System.EventHandler(this.bManage_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(409, 186);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 22);
+            this.button2.TabIndex = 373;
+            this.button2.Text = "엑셀변환";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // dataGrid1
+            // 
+            this.dataGrid1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.dataGrid1.DeleteQuestionMessage = "Are you sure to delete all the selected rows?";
+            this.dataGrid1.EnableSort = false;
+            this.dataGrid1.FixedRows = 1;
+            this.dataGrid1.Location = new System.Drawing.Point(13, 212);
+            this.dataGrid1.Name = "dataGrid1";
+            this.dataGrid1.SelectionMode = SourceGrid.GridSelectionMode.Row;
+            this.dataGrid1.Size = new System.Drawing.Size(1529, 590);
+            this.dataGrid1.TabIndex = 374;
+            this.dataGrid1.TabStop = true;
+            this.dataGrid1.ToolTipText = "";
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox14.Controls.Add(this.textBox1);
+            this.groupBox14.Controls.Add(this.button3);
+            this.groupBox14.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.groupBox14.Location = new System.Drawing.Point(187, 67);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(162, 49);
+            this.groupBox14.TabIndex = 373;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "윤전 사이즈그룹";
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.White;
+            this.textBox1.ForeColor = System.Drawing.Color.Black;
+            this.textBox1.Location = new System.Drawing.Point(10, 20);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(123, 21);
+            this.textBox1.TabIndex = 372;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(132, 20);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(23, 22);
+            this.button3.TabIndex = 372;
+            this.button3.Text = "▼";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // watGroupBox2
+            // 
+            this.watGroupBox2.BorderColor = System.Drawing.Color.Black;
+            this.watGroupBox2.Controls.Add(this.bShoping_chk_sync);
+            this.watGroupBox2.Controls.Add(this.bShoping_all_sync);
+            this.watGroupBox2.Controls.Add(this.bShoping_add);
+            this.watGroupBox2.Location = new System.Drawing.Point(956, 164);
+            this.watGroupBox2.Name = "watGroupBox2";
+            this.watGroupBox2.Size = new System.Drawing.Size(443, 44);
+            this.watGroupBox2.TabIndex = 372;
+            this.watGroupBox2.TabStop = false;
+            this.watGroupBox2.Text = "쇼핑백 ";
+            // 
+            // bShoping_chk_sync
+            // 
+            this.bShoping_chk_sync.Location = new System.Drawing.Point(284, 15);
+            this.bShoping_chk_sync.Name = "bShoping_chk_sync";
+            this.bShoping_chk_sync.Size = new System.Drawing.Size(150, 23);
+            this.bShoping_chk_sync.TabIndex = 372;
+            this.bShoping_chk_sync.Text = "선택 쇼핑백DB동기화";
+            this.bShoping_chk_sync.UseVisualStyleBackColor = true;
+            this.bShoping_chk_sync.Click += new System.EventHandler(this.bShoping_chk_sync_Click);
+            // 
+            // bShoping_all_sync
+            // 
+            this.bShoping_all_sync.Location = new System.Drawing.Point(128, 15);
+            this.bShoping_all_sync.Name = "bShoping_all_sync";
+            this.bShoping_all_sync.Size = new System.Drawing.Size(150, 23);
+            this.bShoping_all_sync.TabIndex = 372;
+            this.bShoping_all_sync.Text = "전체 쇼핑백DB동기화";
+            this.bShoping_all_sync.UseVisualStyleBackColor = true;
+            this.bShoping_all_sync.Click += new System.EventHandler(this.bShoping_all_sync_Click);
+            // 
+            // bShoping_add
+            // 
+            this.bShoping_add.Location = new System.Drawing.Point(5, 15);
+            this.bShoping_add.Name = "bShoping_add";
+            this.bShoping_add.Size = new System.Drawing.Size(117, 23);
+            this.bShoping_add.TabIndex = 372;
+            this.bShoping_add.Text = "쇼핑백DB추가";
+            this.bShoping_add.UseVisualStyleBackColor = true;
+            this.bShoping_add.Click += new System.EventHandler(this.bShoping_add_Click);
+            // 
+            // watGroupBox3
+            // 
+            this.watGroupBox3.BorderColor = System.Drawing.Color.Black;
+            this.watGroupBox3.Controls.Add(this.bSang_add);
+            this.watGroupBox3.Location = new System.Drawing.Point(1411, 163);
+            this.watGroupBox3.Name = "watGroupBox3";
+            this.watGroupBox3.Size = new System.Drawing.Size(129, 44);
+            this.watGroupBox3.TabIndex = 372;
+            this.watGroupBox3.TabStop = false;
+            this.watGroupBox3.Text = "상가책 ";
+            // 
+            // bSang_add
+            // 
+            this.bSang_add.Location = new System.Drawing.Point(5, 15);
+            this.bSang_add.Name = "bSang_add";
+            this.bSang_add.Size = new System.Drawing.Size(117, 23);
+            this.bSang_add.TabIndex = 372;
+            this.bSang_add.Text = "상가책DB추가";
+            this.bSang_add.UseVisualStyleBackColor = true;
+            this.bSang_add.Click += new System.EventHandler(this.bSang_add_Click);
+            // 
+            // watGroupBox1
+            // 
+            this.watGroupBox1.BorderColor = System.Drawing.Color.Black;
+            this.watGroupBox1.Controls.Add(this.bMacro_chk_sync);
+            this.watGroupBox1.Controls.Add(this.bMacro_all_sync);
+            this.watGroupBox1.Controls.Add(this.bMacro_add);
+            this.watGroupBox1.Location = new System.Drawing.Point(501, 163);
+            this.watGroupBox1.Name = "watGroupBox1";
+            this.watGroupBox1.Size = new System.Drawing.Size(443, 44);
+            this.watGroupBox1.TabIndex = 372;
+            this.watGroupBox1.TabStop = false;
+            this.watGroupBox1.Text = "책자형 ";
+            // 
+            // bMacro_chk_sync
+            // 
+            this.bMacro_chk_sync.Location = new System.Drawing.Point(284, 15);
+            this.bMacro_chk_sync.Name = "bMacro_chk_sync";
+            this.bMacro_chk_sync.Size = new System.Drawing.Size(150, 23);
+            this.bMacro_chk_sync.TabIndex = 372;
+            this.bMacro_chk_sync.Text = "선택 책자형DB동기화";
+            this.bMacro_chk_sync.UseVisualStyleBackColor = true;
+            this.bMacro_chk_sync.Click += new System.EventHandler(this.bMacro_chk_sync_Click);
+            // 
+            // bMacro_all_sync
+            // 
+            this.bMacro_all_sync.Location = new System.Drawing.Point(128, 15);
+            this.bMacro_all_sync.Name = "bMacro_all_sync";
+            this.bMacro_all_sync.Size = new System.Drawing.Size(150, 23);
+            this.bMacro_all_sync.TabIndex = 372;
+            this.bMacro_all_sync.Text = "전체 책자형DB동기화";
+            this.bMacro_all_sync.UseVisualStyleBackColor = true;
+            this.bMacro_all_sync.Click += new System.EventHandler(this.bMacro_all_sync_Click);
+            // 
+            // bMacro_add
+            // 
+            this.bMacro_add.Location = new System.Drawing.Point(5, 15);
+            this.bMacro_add.Name = "bMacro_add";
+            this.bMacro_add.Size = new System.Drawing.Size(117, 23);
+            this.bMacro_add.TabIndex = 372;
+            this.bMacro_add.Text = "책자형DB추가";
+            this.bMacro_add.UseVisualStyleBackColor = true;
+            this.bMacro_add.Click += new System.EventHandler(this.bMacro_add_Click);
+            // 
+            // Form_501
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1557, 829);
+            this.Controls.Add(this.groupBox14);
+            this.Controls.Add(this.dataGrid1);
+            this.Controls.Add(this.groupBox11);
+            this.Controls.Add(this.groupBox8);
+            this.Controls.Add(this.groupBox9);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.groupBox10);
+            this.Controls.Add(this.watGroupBox2);
+            this.Controls.Add(this.watGroupBox3);
+            this.Controls.Add(this.watGroupBox1);
+            this.Controls.Add(this.bManage);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.groupBox6);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox13);
+            this.Controls.Add(this.groupBox12);
+            this.Controls.Add(this.groupBox7);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.bSearch);
+            this.Controls.Add(this.bClear);
+            this.Controls.Add(this.bSearchManage);
+            this.Controls.Add(this.bDelete);
+            this.Controls.Add(this.bCopy);
+            this.Controls.Add(this.bAdd);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "Form_501";
+            this.Text = "지류단가 DB__";
+            this.Load += new System.EventHandler(this.Form_502_Load);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox13.PerformLayout();
+            this.groupBox14.ResumeLayout(false);
+            this.groupBox14.PerformLayout();
+            this.watGroupBox2.ResumeLayout(false);
+            this.watGroupBox3.ResumeLayout(false);
+            this.watGroupBox1.ResumeLayout(false);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Button bAdd;
+        private System.Windows.Forms.Button bCopy;
+        private System.Windows.Forms.Button bDelete;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.Button bClear;
+        private System.Windows.Forms.Button bSearch;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button bPackMody;
+        private System.Windows.Forms.GroupBox groupBox13;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button bPackRemove;
+        private System.Windows.Forms.Button bPackAdd;
+        private System.Windows.Forms.Button bPackTrade;
+        private System.Windows.Forms.Button bSearchManage;
+        private System.Windows.Forms.Button bSgroup;
+        private System.Windows.Forms.TextBox tbSgroup;
+        private System.Windows.Forms.Button bPackClear;
+        private System.Windows.Forms.Button bJiup;
+        private System.Windows.Forms.TextBox tbJiup;
+        private System.Windows.Forms.Button bPuse;
+        private System.Windows.Forms.TextBox tbPuse;
+        private System.Windows.Forms.ComboBox cbBunryu;
+        private System.Windows.Forms.TextBox tbThick;
+        private System.Windows.Forms.TextBox tbWeight;
+        private System.Windows.Forms.ComboBox cbSunsu;
+        private System.Windows.Forms.ComboBox cbSock;
+        private System.Windows.Forms.ComboBox cbPmake;
+        private System.Windows.Forms.ComboBox cbPgroup;
+        private System.Windows.Forms.ComboBox cbS_bunryu;
+        private System.Windows.Forms.ComboBox cbS_pgroup;
+        private System.Windows.Forms.TextBox tbS_pcolor;
+        private System.Windows.Forms.ComboBox cbS_pmake;
+        private System.Windows.Forms.TextBox tbS_sgroup;
+        private System.Windows.Forms.Button bS_sgroup;
+        private System.Windows.Forms.ComboBox cbS_sock;
+        private System.Windows.Forms.ComboBox cbS_sunsu;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox tbS_puse;
+        private System.Windows.Forms.RadioButton rbPgroup;
+        private System.Windows.Forms.RadioButton rbPmake;
+        private System.Windows.Forms.RadioButton rbBunryu;
+        private System.Windows.Forms.RadioButton rbPname;
+        private System.Windows.Forms.ComboBox cbS_pname;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button bMClear;
+        private System.Windows.Forms.ComboBox cbS_weight2;
+        private System.Windows.Forms.ComboBox cbS_weight1;
+        private System.Windows.Forms.TextBox tbNoticePrice;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox tbTonsu;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button bManage;
+        private System.Windows.Forms.Button bMacro_add;
+        private System.Windows.Forms.Button bMacro_all_sync;
+        private System.Windows.Forms.Button bMacro_chk_sync;
+        private Dukyou.WATGroupBox watGroupBox1;
+        private Dukyou.WATGroupBox watGroupBox2;
+        private System.Windows.Forms.Button bShoping_chk_sync;
+        private System.Windows.Forms.Button bShoping_all_sync;
+        private System.Windows.Forms.Button bShoping_add;
+        private Dukyou.WATGroupBox watGroupBox3;
+        private System.Windows.Forms.Button bSang_add;
+        private System.Windows.Forms.Button button2;
+        private SourceGrid.DataGrid dataGrid1;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox tbYgroup;
+        private System.Windows.Forms.GroupBox groupBox14;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button3;
+    }
+}
